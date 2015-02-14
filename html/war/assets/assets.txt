@@ -1,5 +1,7 @@
 d:assets:0:application/unknown
 i:badlogic.jpg:68465:image/jpeg
+i:doge-600.png:279818:image/png
+i:splash.gif:499487:image/gif
 t:com/badlogic/gdx/graphics/g3d/particles/particles.fragment.glsl:770:application/unknown
 t:com/badlogic/gdx/graphics/g3d/particles/particles.vertex.glsl:2730:application/unknown
 t:com/badlogic/gdx/graphics/g3d/shaders/default.fragment.glsl:5163:application/unknown
