@@ -60,8 +60,3 @@ nb-configuration.xml
 gradle-app.setting
 ## OS Specific
 .DS_Store
-
-LogicGame.iml
-LogicGame.ipr
-LogicGame.iws
-.idea

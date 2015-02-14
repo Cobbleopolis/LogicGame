@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\Logan\IdeaProjects\LogicGame\core\build\libs\core-1.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="b876e53242aaf9df9afa3973f5c3a8c247b89671">
+        <dex dex="C:\Users\Logan\IdeaProjects\LogicGame\android\build\intermediates\pre-dexed\debug\core-1.0-c7c9826c3fb0fa1f9b6b7a3550c9e5064c5a7c78.jar" />
+    </item>
+    <item
+        jar="C:\Users\Logan\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx-backend-android\1.5.4\7b974b501dc92361698a1f6251f9e7b308582c08\gdx-backend-android-1.5.4.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="7b974b501dc92361698a1f6251f9e7b308582c08">
+        <dex dex="C:\Users\Logan\IdeaProjects\LogicGame\android\build\intermediates\pre-dexed\debug\gdx-backend-android-1.5.4-719d8ef90687d34b7c73c197db1dbd0c1b5ef157.jar" />
+    </item>
+    <item
+        jar="C:\Users\Logan\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx\1.5.4\c16e1a0088ae7f0cac4a8d6595be32432e6069f4\gdx-1.5.4.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="c16e1a0088ae7f0cac4a8d6595be32432e6069f4">
+        <dex dex="C:\Users\Logan\IdeaProjects\LogicGame\android\build\intermediates\pre-dexed\debug\gdx-1.5.4-b8e2c4e3d97578e1f83fbabd0a3d2495a82601a9.jar" />
+    </item>
+
+</items>

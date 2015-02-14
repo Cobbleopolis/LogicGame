@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="C:\Users\Logan\IdeaProjects\LogicGame\android\assets"><file name="badlogic.jpg" path="C:\Users\Logan\IdeaProjects\LogicGame\android\assets\badlogic.jpg"/><file name="doge-600.png" path="C:\Users\Logan\IdeaProjects\LogicGame\android\assets\doge-600.png"/></source></dataSet><dataSet config="release"><source path="C:\Users\Logan\IdeaProjects\LogicGame\android\src\release\assets"/></dataSet></merger>
