@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.logicgame.Board;
+import com.logicgame.LogicGame;
 import com.logicgame.Not;
 import com.logicgame.Wire;
 import com.logicgame.util.UtilDraw;
@@ -63,8 +64,10 @@ public class ScreenGame implements Screen, InputProcessor{
         spriteBatch.end();
         stage.act();
         stage.draw();
-//        if(Gdx.input.justTouched())
-//            game.setScreen(new ScreenLevelSelect(game));
+        if (Gdx.input.isKeyPressed(Input.Keys.BACK) && LogicGame.backDelay == 0){
+            game.setScreen(new ScreenLevelSelect(game));
+            LogicGame.backDelay = 30;
+        }
     }
 
     @Override
@@ -94,6 +97,7 @@ public class ScreenGame implements Screen, InputProcessor{
 
     @Override
     public void show() {
+        Gdx.input.setCatchBackKey(true);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage = new Stage();
         skin = UtilDraw.createBasicSkin();
@@ -118,8 +122,8 @@ public class ScreenGame implements Screen, InputProcessor{
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        System.out.println(screenX);
-        if(screenX < board.width)
+//        System.out.println(screenX);
+//        if(screenX < board.width)
         return false;
     }
 

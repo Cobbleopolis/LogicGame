@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.logicgame.LogicGame;
 import com.logicgame.util.UtilDraw;
 
 /**
@@ -49,10 +50,10 @@ public class ScreenLevelSelect implements Screen {
 
         stage.act();
         stage.draw();
-//        if (Gdx.input.isKeyPressed(Input.Keys.BACK)) {
-//            System.out.println("To Main Menu");
-//            game.setScreen(new ScreenMainMenu(game));
-//        }
+        if (Gdx.input.isKeyPressed(Input.Keys.BACK) && LogicGame.backDelay == 0){
+            game.setScreen(new ScreenMainMenu(game));
+            LogicGame.backDelay = 30;
+        }
     }
 
     @Override
@@ -82,8 +83,8 @@ public class ScreenLevelSelect implements Screen {
 
     @Override
     public void show() {
+        Gdx.input.setCatchBackKey(true);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-//        Gdx.input.setCatchBackKey(true);
         stage = new Stage();
         skin = UtilDraw.createBasicSkin();
         TextButton button = new TextButton("Level 1", skin); // Use the initialized skin
@@ -95,20 +96,8 @@ public class ScreenLevelSelect implements Screen {
         });
         button.setPosition(Gdx.graphics.getWidth()/2 - button.getWidth()/2 , Gdx.graphics.getHeight()/2);
 
-
-        TextButton backButton = new TextButton("Back", skin); // Use the initialized skin
-        backButton.setWidth(250);
-        backButton.addListener(new ClickListener() {
-            public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new ScreenMainMenu(game));
-
-            }
-        });
-        backButton.setPosition(0, 0);
-
-
         stage.addActor(button);
-        stage.addActor(backButton);
+
         Gdx.input.setInputProcessor(stage);// Make the stage consume events
     }
 }

@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.logicgame.LogicGame;
 import com.logicgame.util.UtilDraw;
 
 public class ScreenMainMenu implements Screen {
@@ -78,18 +79,18 @@ public class ScreenMainMenu implements Screen {
 
     @Override
     public void show() {
+        Gdx.input.setCatchBackKey(false);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-//        Gdx.input.setCatchBackKey(false);
         stage = new Stage();
 //        stage.setDebugAll(true);
         skin = UtilDraw.createBasicSkin();
+        BitmapFont font = skin.getFont("default");
+
         TextButton button = new TextButton("New game", skin); // Use the initialized skin
         button.setWidth(500);
         button.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-//                System.out.println("Touch");
                 game.setScreen(new ScreenLevelSelect(game));
-
             }
         });
         button.setPosition(Gdx.graphics.getWidth()/2 - button.getWidth()/2 , Gdx.graphics.getHeight()/2);
