@@ -108,7 +108,7 @@ public class ScreenMainMenu implements Screen {
         levelSelectButton.setWidth(500);
         levelSelectButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new ScreenLevelSelect(game));
+                game.setScreen(new ScreenMainMenu(game));
             }
         });
         levelSelectButton.setPosition(Gdx.graphics.getWidth() / 2 - levelSelectButton.getWidth() / 2, Gdx.graphics.getHeight() / 2);
