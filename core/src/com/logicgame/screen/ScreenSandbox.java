@@ -3,9 +3,13 @@ package com.logicgame.screen;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.logicgame.Board;
 import com.logicgame.LogicGame;
 import com.logicgame.Not;
@@ -21,6 +25,7 @@ public class ScreenSandbox implements Screen, InputProcessor{
 
     Game game;
     Board board;
+    BitmapFont font;
 
     SpriteBatch spriteBatch;
 
@@ -80,12 +85,41 @@ public class ScreenSandbox implements Screen, InputProcessor{
 
     @Override
     public void show() {
+//        spriteBatch = new SpriteBatch();
+//        spriteBatch.begin();
+        Gdx.input.setCatchBackKey(false);
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage = new Stage();
+//        stage.setDebugAll(true);
         skin = UtilDraw.createBasicSkin();
-        Gdx.input.setInputProcessor(this);// Make the stage consume events
 
+
+        font = UtilDraw.font;
+
+        TextButton directionButton = new TextButton("▲", skin); // Use the initialized skin
+        directionButton.setWidth(300);
+        directionButton.setHeight(300);
+        directionButton.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new ScreenLevelSelect(game));
+            }
+        });
+        directionButton.setPosition(0, board.y - directionButton.getHeight());
+        stage.addActor(directionButton);
+
+        TextButton sandboxButton = new TextButton("Sandbox", skin); // Use the initialized skin
+        sandboxButton.setWidth(500);
+        sandboxButton.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new ScreenSandbox(game));
+            }
+        });
+        sandboxButton.setPosition(Gdx.graphics.getWidth() / 2 - sandboxButton.getWidth() / 2, Gdx.graphics.getHeight() / 2 - 277);
+        stage.addActor(sandboxButton);
+
+
+        Gdx.input.setInputProcessor(stage);// Make the stage consume events
     }
 
     @Override
