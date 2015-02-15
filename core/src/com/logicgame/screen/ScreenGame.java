@@ -9,10 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.logicgame.Board;
-import com.logicgame.LogicGame;
-import com.logicgame.Not;
-import com.logicgame.Wire;
+import com.logicgame.*;
 import com.logicgame.util.UtilDraw;
 
 /**
@@ -25,6 +22,7 @@ public class ScreenGame implements Screen, InputProcessor{
 
     Game game;
     Board board;
+    Button1 rotate;
 
     SpriteBatch spriteBatch;
 
@@ -45,7 +43,7 @@ public class ScreenGame implements Screen, InputProcessor{
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         spriteBatch.begin();
-
+        rotate.render();
         board.render();
         board.update();
         spriteBatch.end();
@@ -88,6 +86,7 @@ public class ScreenGame implements Screen, InputProcessor{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage = new Stage();
         skin = UtilDraw.createBasicSkin();
+        rotate = new Button1(0,board.y - 320,320,320,new Texture("arrow.png"),board);
         Gdx.input.setInputProcessor(this);// Make the stage consume events
 
     }
@@ -111,7 +110,10 @@ public class ScreenGame implements Screen, InputProcessor{
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         System.out.println(screenX);
         if(screenX < board.width * board.component_size && (Gdx.graphics.getHeight() - screenY - board.y ) > 0) {
-            board.addComponent(new Not(screenX / board.component_size + 1, (Gdx.graphics.getHeight() - screenY - board.y)/ board.component_size + 1, 0, board));
+            board.addComponent(new Not(screenX / board.component_size + 1, (Gdx.graphics.getHeight() - screenY - board.y)/ board.component_size + 1, rotate.rot, board));
+        }
+        if (rotate.isPressed(screenX, Gdx.graphics.getHeight() - screenY)) {
+            rotate.onPress();
         }
         return false;
     }

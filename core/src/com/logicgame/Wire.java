@@ -18,7 +18,7 @@ public class Wire {
         this.x = x;
         this.y = y;
         this.board = board;
-        this.board.wires[x][y] = this;
+//        this.board.wires[x][y] = this;
         this.state = false;
     }
     public void update() {

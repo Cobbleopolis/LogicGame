@@ -53,16 +53,55 @@ public class Board {
         }
     }
     public void addComponent(Component c) {
+        if(wires[c.x][c.y] != null) {
+            removeWire(wires[c.x][c.y]);
+        }
+        if(bridges[c.x][c.y] != null) {
+            removeBridge(bridges[c.x][c.y]);
+        }
+        if(gates[c.x][c.y] != null) {
+            removeComp(gates[c.x][c.y]);
+        }
         gatesList.add(c);
         gates[c.x][c.y] = c;
     }
     public void addWire(Wire w) {
+        if(wires[w.x][w.y] != null) {
+            removeWire(wires[w.x][w.y]);
+        }
+        if(bridges[w.x][w.y] != null) {
+            removeBridge(bridges[w.x][w.y]);
+        }
+        if(gates[w.x][w.y] != null) {
+            removeComp(gates[w.x][w.y]);
+        }
         wiresList.add(w);
         wires[w.x][w.y] = w;
     }
     public void addBridge(Bridge b) {
+        if(wires[b.x][b.y] != null) {
+            removeWire(wires[b.x][b.y]);
+        }
+        if(bridges[b.x][b.y] != null) {
+            removeBridge(bridges[b.x][b.y]);
+        }
+        if(gates[b.x][b.y] != null) {
+            removeComp(gates[b.x][b.y]);
+        }
         bridgesList.add(b);
         bridges[b.x][b.y] = b;
+    }
+    public void removeComp(Component c) {
+        gatesList.remove(gatesList.indexOf(c));
+        gates[c.x][c.y] = null;
+    }
+    public void removeWire(Wire w) {
+        wiresList.remove(wiresList.indexOf(w));
+        wires[w.x][w.y] = null;
+    }
+    public void removeBridge(Bridge b) {
+        bridgesList.remove(bridgesList.indexOf(b));
+        bridges[b.x][b.y] = null;
     }
     public void lightBridges(int dir, int x, int y, int length) {
         for(int i = 1; i < length; i++) {

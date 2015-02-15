@@ -1,5 +1,6 @@
 package com.logicgame;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ public class Component {
     int state, newState;
     Board board;
     SpriteBatch spriteBatch;
+    Texture texOn = new Texture("wire_on.png");
 
     public Component(int x,int y,int rot, int width, int height, int state, Board board) {
         this.x = x;
