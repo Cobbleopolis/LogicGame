@@ -35,7 +35,7 @@ public class Not extends Component {
                     }
                     break;
                 case 3:
-                    while(y + yOffset2 < board.height && board.bridges[x][y + yOffset2] != null) {
+                    while(y + yOffset2 < board.height + 1 && board.bridges[x][y + yOffset2] != null) {
 //                        board.bridges[x][y + yOffset2].state = board.bridges[x][y + yOffset2].state | 2;
                         yOffset2++;
                     }
@@ -48,7 +48,7 @@ public class Not extends Component {
                     }
                     break;
                 case 0:
-                    while(x + xOffset2 < board.width && board.bridges[x + xOffset2][y] != null) {
+                    while(x + xOffset2 < board.width + 1 && board.bridges[x + xOffset2][y] != null) {
 //                        board.bridges[x + xOffset2][y].state = board.bridges[x + xOffset2][y].state | 1;
                         xOffset2++;
                     }
