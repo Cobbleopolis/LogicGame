@@ -30,9 +30,9 @@ public class Component {
     public void updateWires() {
         if (x > 0 && board.wires[x - 1][y] != null && (state & 1) == 1 && !board.wires[x - 1][y].state)
             board.wires[x - 1][y].update();
-        if (y < board.height - 1 && board.wires[x][y + 1] != null && (state & 2) == 2 && !board.wires[x][y + 1].state)
+        if (y < board.height  && board.wires[x][y + 1] != null && (state & 2) == 2 && !board.wires[x][y + 1].state)
             board.wires[x][y + 1].update();
-        if (x < board.width - 1 && board.wires[x + 1][y] != null && (state & 4) == 4 && !board.wires[x + 1][y].state)
+        if (x < board.width  && board.wires[x + 1][y] != null && (state & 4) == 4 && !board.wires[x + 1][y].state)
             board.wires[x + 1][y].update();
         if (y > 0 && board.wires[x][y - 1] != null && (state & 8) == 8 && !board.wires[x][y - 1].state)
             board.wires[x][y - 1].update();
