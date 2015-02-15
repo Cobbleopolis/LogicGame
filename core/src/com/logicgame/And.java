@@ -10,8 +10,8 @@ public class And extends Component{
         super(x, y, rot, 1, 1, 1, board);
 
     }
-    Texture texOn = new Texture("not_on.png");
-    Texture texOff = new Texture("not_off.png");
+    Texture texOn = new Texture("and_on.png");
+    Texture texOff = new Texture("and_off.png");
     @Override
     public void update() {
 //        if (this.state != 0) {
@@ -110,4 +110,4 @@ public class And extends Component{
         }
     }
 }
-}
+
