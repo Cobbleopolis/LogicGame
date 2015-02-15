@@ -2,7 +2,7 @@
 <resources>
     <!-- From: file:/C:/Users/Logan/IdeaProjects/LogicGame/android/res/values/strings.xml -->
     <eat-comment/>
-    <string name="app_name">LogicGame</string>
+    <string name="app_name">LogicBit</string>
     <!-- From: file:/C:/Users/Logan/IdeaProjects/LogicGame/android/res/values/styles.xml -->
     <eat-comment/>
     <style name="GdxTheme" parent="android:Theme">
