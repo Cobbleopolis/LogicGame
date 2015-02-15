@@ -2,6 +2,7 @@ package com.logicgame.screen;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -48,6 +49,10 @@ public class ScreenLevelSelect implements Screen {
 
         stage.act();
         stage.draw();
+//        if (Gdx.input.isKeyPressed(Input.Keys.BACK)) {
+//            System.out.println("To Main Menu");
+//            game.setScreen(new ScreenMainMenu(game));
+//        }
     }
 
     @Override
@@ -67,30 +72,43 @@ public class ScreenLevelSelect implements Screen {
 
     @Override
     public void hide() {
-
+        dispose();
     }
 
     @Override
     public void dispose() {
-
+        stage.dispose();
     }
 
     @Override
     public void show() {
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+//        Gdx.input.setCatchBackKey(true);
         stage = new Stage();
         skin = UtilDraw.createBasicSkin();
         TextButton button = new TextButton("Level 1", skin); // Use the initialized skin
-//        button.padLeft(30f);
-//        button.padRight(30f);
-        button.pad(100f);
+        button.setWidth(340);
         button.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Touch");
                 game.setScreen(new ScreenGame(game));
             }
         });
         button.setPosition(Gdx.graphics.getWidth()/2 - button.getWidth()/2 , Gdx.graphics.getHeight()/2);
+
+
+        TextButton backButton = new TextButton("Back", skin); // Use the initialized skin
+        backButton.setWidth(250);
+        backButton.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new ScreenMainMenu(game));
+
+            }
+        });
+        backButton.setPosition(0, 0);
+
+
         stage.addActor(button);
+        stage.addActor(backButton);
         Gdx.input.setInputProcessor(stage);// Make the stage consume events
     }
 }

@@ -68,25 +68,26 @@ public class ScreenMainMenu implements Screen {
 
     @Override
     public void hide() {
-
+        dispose();
     }
 
     @Override
     public void dispose() {
-
+        stage.dispose();
     }
 
     @Override
     public void show() {
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+//        Gdx.input.setCatchBackKey(false);
         stage = new Stage();
+//        stage.setDebugAll(true);
         skin = UtilDraw.createBasicSkin();
         TextButton button = new TextButton("New game", skin); // Use the initialized skin
-//        button.padLeft(30f);
-//        button.padRight(30f);
-        button.pad(100f);
+        button.setWidth(500);
         button.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Touch");
+//                System.out.println("Touch");
                 game.setScreen(new ScreenLevelSelect(game));
 
             }
