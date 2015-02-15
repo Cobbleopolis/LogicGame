@@ -104,15 +104,27 @@ public class ScreenMainMenu implements Screen {
 
         font = UtilDraw.font;
 
-        TextButton button = new TextButton("New game", skin); // Use the initialized skin
-        button.setWidth(500);
-        button.addListener(new ClickListener() {
+        TextButton levelSelectbutton = new TextButton("Level Select", skin); // Use the initialized skin
+        levelSelectbutton.setWidth(500);
+        levelSelectbutton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(new ScreenLevelSelect(game));
             }
         });
-        button.setPosition(Gdx.graphics.getWidth() / 2 - button.getWidth() / 2, Gdx.graphics.getHeight() / 2);
-        stage.addActor(button);
+        levelSelectbutton.setPosition(Gdx.graphics.getWidth() / 2 - levelSelectbutton.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+        stage.addActor(levelSelectbutton);
+
+        TextButton sandboxButton = new TextButton("Sandbox", skin); // Use the initialized skin
+        sandboxButton.setWidth(500);
+        sandboxButton.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new ScreenSandbox(game));
+            }
+        });
+        sandboxButton.setPosition(Gdx.graphics.getWidth() / 2 - sandboxButton.getWidth() / 2, Gdx.graphics.getHeight() / 2 - 277);
+        stage.addActor(sandboxButton);
+
+
         Gdx.input.setInputProcessor(stage);// Make the stage consume events
 //        spriteBatch.end();
     }

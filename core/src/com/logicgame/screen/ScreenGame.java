@@ -27,13 +27,6 @@ public class ScreenGame implements Screen, InputProcessor{
     Board board;
 
     SpriteBatch spriteBatch;
-    Texture img = new Texture("doge-600.png");
-
-    //1920x1080
-    int x = 0;
-    int y = 0;
-    int xVel = 4;
-    int yVel = 4;
 
     /**
      * Constructor for the splash screen
@@ -52,7 +45,7 @@ public class ScreenGame implements Screen, InputProcessor{
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         spriteBatch.begin();
-//        spriteBatch.draw(img, x, y);
+
         board.render();
         board.update();
         spriteBatch.end();
