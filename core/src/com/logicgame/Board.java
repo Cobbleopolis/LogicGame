@@ -92,7 +92,7 @@ public class Board {
         if(gates[b.x][b.y] != null && !gates[b.x][b.y].isIndestructable) {
             removeComp(gates[b.x][b.y]);
         }
-        if(gates[b.x][b.y] ==) {
+        if(gates[b.x][b.y] == null) {
             bridgesList.add(b);
             bridges[b.x][b.y] = b;
         }
