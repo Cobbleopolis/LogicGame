@@ -264,47 +264,55 @@ public class ScreenGame implements Screen, InputProcessor{
         Level level = new Level(temp0, tempt, tempc, tempu, board, "Match input with output");
         switch(lvl) {
             case 1:
-                MyInput[] temp1 = {new MyInput(4, 1, board), new MyInput(9, 1, board)};
-                MyOutput[] temp2 = {new MyOutput(6, 9, board)};
+                MyInput[] temp1 = {new MyInput(3, 1, board), new MyInput(7, 1, board)};
+                MyOutput[] temp2 = {new MyOutput(5, 10, board)};
                 int[][] temp3 = {{0, 0}, {15, 0}, {0, 15}, {15, 15}};
                 int[][] temp4 = {{0}, {15}, {15}, {15}};
                 level = new Level(temp1, temp2, temp3, temp4, board, "Turn on output when\n either input is on");
             break;
             case 2:
-                MyInput[] temp5 = {new MyInput(4, 1, board), new MyInput(9, 1, board)};
-                MyOutput[] temp6 = {new MyOutput(6, 9, board)};
+                MyInput[] temp5 = {new MyInput(3, 1, board), new MyInput(7, 1, board)};
+                MyOutput[] temp6 = {new MyOutput(5, 10, board)};
                 int[][] temp7 = {{0, 0}, {15, 0}, {0, 15}, {15, 15}};
                 int[][] temp8 = {{15}, {0}, {0}, {0}};
                 level = new Level(temp5, temp6, temp7, temp8, board, "Turn on output when\n neither input is on");
             break;
             case 3:
-                MyInput[] temp9 = {new MyInput(4, 1, board), new MyInput(9, 1, board)};
-                MyOutput[] temp10 = {new MyOutput(6, 9, board)};
+                MyInput[] temp9 = {new MyInput(3, 1, board), new MyInput(7, 1, board)};
+                MyOutput[] temp10 = {new MyOutput(5, 10, board)};
                 int[][] temp11 = {{0, 0}, {15, 0}, {0, 15}, {15, 15}};
                 int[][] temp12 = {{15}, {15}, {15}, {0}};
                 level =  new Level(temp9, temp10, temp11, temp12, board, "Turn off output when\n both inputs are on");
             break;
             case 4:
-                MyInput[] temp13 = {new MyInput(4, 1, board), new MyInput(9, 1, board)};
-                MyOutput[] temp14 = {new MyOutput(6, 9, board)};
+                MyInput[] temp13 = {new MyInput(3, 1, board), new MyInput(7, 1, board)};
+                MyOutput[] temp14 = {new MyOutput(5, 10, board)};
                 int[][] temp15 = {{0, 0}, {15, 0}, {0, 15}, {15, 15}};
                 int[][] temp16 = {{0}, {0}, {0}, {15}};
                 level =  new Level(temp13, temp14, temp15, temp16, board, "Turn on output when\n both inputs are on");
                 break;
             case 5:
-                MyInput[] temp17 = {new MyInput(4, 1, board), new MyInput(9, 1, board)};
-                MyOutput[] temp18 = {new MyOutput(6, 9, board)};
+                MyInput[] temp17 = {new MyInput(3, 1, board), new MyInput(7, 1, board)};
+                MyOutput[] temp18 = {new MyOutput(5, 10, board)};
                 int[][] temp19 = {{0, 0}, {15, 0}, {0, 0}, {0, 15}, {0, 0}};
                 int[][] temp20 = {{0}, {15}, {15}, {0}, {0}};
                 level =  new Level(temp17, temp18, temp19, temp20, board, "Turn on output when\n first input is on.\n Then, keep output on\n until second input\n turns on.");
                 break;
             case 6:
-                MyInput[] temp21 = {new MyInput(4, 1, board), new MyInput(9, 1, board)};
-                MyOutput[] temp22 = {new MyOutput(6, 9, board)};
+                MyInput[] temp21 = {new MyInput(3, 1, board), new MyInput(7, 1, board)};
+                MyOutput[] temp22 = {new MyOutput(5, 10, board)};
                 int[][] temp23 = {{0, 0}, {15, 0}, {0, 15}, {15, 15}};
                 int[][] temp24 = {{0}, {15}, {15}, {0}};
                 level =  new Level(temp21, temp22, temp23, temp24, board, "Turn on output when\nonly one input is on.");
                 break;
+            case 7:
+                MyInput[] temp25 = {new MyInput(2, 1, board), new MyInput(5, 1, board)};
+                MyOutput[] temp26 = {new MyOutput(5, 10, board)};
+                int[][] temp27 = {{0, 0}, {15, 0}, {0, 15}, {15, 15}};
+                int[][] temp28 = {{0}, {15}, {15}, {0}};
+                level =  new Level(temp25, temp26, temp27, temp28, board, "Turn on output when\nonly one input is on.");
+                break;
+
 
 
         }
