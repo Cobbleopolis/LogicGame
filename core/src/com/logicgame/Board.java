@@ -62,7 +62,7 @@ public class Board {
         if(gates[c.x][c.y] != null && !gates[c.x][c.y].isIndestructable) {
             removeComp(gates[c.x][c.y]);
         }
-        if(gates[c.x][c.y] != null && !gates[c.x][c.y].isIndestructable) {
+        if(gates[c.x][c.y] != null || !gates[c.x][c.y].isIndestructable) {
             gatesList.add(c);
             gates[c.x][c.y] = c;
         }
@@ -77,7 +77,7 @@ public class Board {
         if(gates[w.x][w.y] != null && !gates[w.x][w.y].isIndestructable) {
             removeComp(gates[w.x][w.y]);
         }
-        if(!gates[w.x][w.y].isIndestructable) {
+        if(gates[w.x][w.y] != null || !gates[w.x][w.y].isIndestructable) {
             wiresList.add(w);
             wires[w.x][w.y] = w;
         }
@@ -92,7 +92,7 @@ public class Board {
         if(gates[b.x][b.y] != null && !gates[b.x][b.y].isIndestructable) {
             removeComp(gates[b.x][b.y]);
         }
-        if(!gates[b.x][b.y].isIndestructable) {
+        if(gates[b.x][b.y] != null || !gates[b.x][b.y].isIndestructable) {
             bridgesList.add(b);
             bridges[b.x][b.y] = b;
         }
