@@ -8,8 +8,8 @@ import java.util.ArrayList;
  * Created by Alex on 2/14/2015.
  */
 public class Board {
-    int width;
-    int height;
+    public int width;
+    public int height;
     Wire[][] wires;
     Component[][] gates;
     ArrayList<Wire> wiresList;

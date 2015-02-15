@@ -63,8 +63,8 @@ public class ScreenGame implements Screen, InputProcessor{
         spriteBatch.end();
         stage.act();
         stage.draw();
-        if(Gdx.input.justTouched())
-            game.setScreen(new ScreenLevelSelect(game));
+//        if(Gdx.input.justTouched())
+//            game.setScreen(new ScreenLevelSelect(game));
     }
 
     @Override
@@ -97,7 +97,8 @@ public class ScreenGame implements Screen, InputProcessor{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage = new Stage();
         skin = UtilDraw.createBasicSkin();
-        Gdx.input.setInputProcessor(stage);// Make the stage consume events
+        Gdx.input.setInputProcessor(this);// Make the stage consume events
+
     }
 
     @Override
@@ -117,7 +118,9 @@ public class ScreenGame implements Screen, InputProcessor{
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        System.out.println("touchDown");
+        System.out.println(screenX);
+        if(screenX < board.width)
+        return false;
     }
 
     @Override
