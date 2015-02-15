@@ -47,7 +47,7 @@ public class Wire {
             board.wires[x + xOffset2][y].update();
         }
 
-        while(y + yOffset1 >= + 1 && board.bridges[x][y + yOffset1] != null) {
+        while(y + yOffset1 >= 0 && board.bridges[x][y + yOffset1] != null) {
 //            board.bridges[x][y + yOffset1].state = board.bridges[x][y + yOffset1].state | 2;
             yOffset1--;
         }
@@ -57,11 +57,11 @@ public class Wire {
         }
 
 
-        while(y + yOffset2 < board.height && board.bridges[x][y + yOffset2] != null) {
+        while(y + yOffset2 < board.height + 1 && board.bridges[x][y + yOffset2] != null) {
 //            board.bridges[x][y + yOffset2].state = board.bridges[x][y + yOffset2].state | 2;
             yOffset2++;
         }
-        if(y + yOffset2 < board.height && board.wires[x][y + yOffset2] != null && !board.wires[x][y + yOffset2].state) {
+        if(y + yOffset2 < board.height + 1 && board.wires[x][y + yOffset2] != null && !board.wires[x][y + yOffset2].state) {
             board.lightBridges(4, x, y, yOffset2);
             board.wires[x][y + yOffset2].update();
         }
