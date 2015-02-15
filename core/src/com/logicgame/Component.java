@@ -28,6 +28,9 @@ public class Component {
         this.board = board;
     }
     public void updateWires() {
+        if(this instanceof MyOutput) {
+            state = 0;
+        }
         if (x > 0 && board.wires[x - 1][y] != null && (state & 1) == 1 && !board.wires[x - 1][y].state)
             board.wires[x - 1][y].update();
         if (y < board.height  && board.wires[x][y + 1] != null && (state & 2) == 2 && !board.wires[x][y + 1].state)

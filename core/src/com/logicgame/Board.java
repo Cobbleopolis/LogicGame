@@ -19,7 +19,7 @@ public class Board {
     ArrayList<Component> gatesList;
     ArrayList<Bridge> bridgesList;
     SpriteBatch spriteBatch;
-    public static int component_size = 108;
+    public static int component_size = 56;
     Texture texture = new Texture("grid.png");
     public Board(int x, int y, int width, int height, SpriteBatch spriteBatch) {
         this.x = x;
@@ -39,6 +39,7 @@ public class Board {
         for(int i = 0; i < wiresList.size(); i++) {
             wiresList.get(i).reset();
         }
+
         for(int i = 0; i < bridgesList.size(); i++) {
             bridgesList.get(i).reset();
         }
@@ -138,7 +139,7 @@ public class Board {
 
     }
     public void render() {
-        spriteBatch.draw(texture,x,y,width * component_size * 2, height * component_size * 2);
+        spriteBatch.draw(texture,x,y,width * component_size, height * component_size);
         for(int i = 0; i < gatesList.size(); i++) {
             gatesList.get(i).render();
         }

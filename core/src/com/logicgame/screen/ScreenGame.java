@@ -26,10 +26,14 @@ public class ScreenGame implements Screen, InputProcessor{
     Game game;
     Board board;
     Button1 rotate;
+    Button1 test;
     Button2 none;
     Button2 wire;
     Button2 not;
     Button2 bridge;
+    int status = 0;
+    Texture win = new Texture("win.png");
+    Texture fail = new Texture("fail.png");
 
     SpriteBatch spriteBatch;
     Level thisLevel;
@@ -44,11 +48,11 @@ public class ScreenGame implements Screen, InputProcessor{
     public ScreenGame(Game g, String level) {
         game = g;
         spriteBatch = new SpriteBatch();
-        board = new Board(0, Gdx.graphics.getHeight() - 10 * Board.component_size, 10,10, spriteBatch);
+        board = new Board(0, Gdx.graphics.getHeight() - 20 * Board.component_size, 20,20, spriteBatch);
         MyInput[] temp1 = {new MyInput(4, 1, board), new MyInput(8, 1, board)};
         MyOutput[] temp2 = {new MyOutput(6, 9, board)};
         int[][] temp3 = {{0, 0}, {15, 0}, {0, 15}, {15, 15}};
-        int[][] temp4 = {{0}, {0}, {0}, {15}};
+        int[][] temp4 = {{0}, {15}, {15}, {15}};
         thisLevel = new Level(temp1, temp2, temp3, temp4, board);
 
     }
@@ -59,12 +63,20 @@ public class ScreenGame implements Screen, InputProcessor{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         spriteBatch.begin();
         rotate.render();
+        test.render();
         none.render();
         wire.render();
         not.render();
         bridge.render();
         board.render();
         board.update();
+        if(status == 1) {
+            spriteBatch.draw(win,330,board.y - 640, 320, 320);
+        }
+        if(status == 2) {
+            spriteBatch.draw(fail,330,board.y - 640, 320, 320);
+        }
+
         spriteBatch.end();
         stage.act();
         stage.draw();
@@ -73,12 +85,24 @@ public class ScreenGame implements Screen, InputProcessor{
             LogicGame.backDelay = 30;
         }
         if(testing) {
+            status = 0;
             thisLevel.setIn();
-            if(thisLevel.testOut())
+            if(thisLevel.testOut()) {
                 thisLevel.num++;
+                timeout = 0;
+            } else {
+                timeout++;
+            }
             if(thisLevel.num == thisLevel.max) {
-                System.out.println("you win!");
+                status = 1;
                 thisLevel.num = 0;
+                timeout = 0;
+                testing = false;
+            }
+            if(timeout == 100) {
+                status = 2;
+                thisLevel.num = 0;
+                timeout = 0;
                 testing = false;
             }
         }
@@ -117,6 +141,7 @@ public class ScreenGame implements Screen, InputProcessor{
         thisLevel.init();
         skin = UtilDraw.createBasicSkin();
         rotate = new Button1(0, board.y - 320, 320, 320, new Texture("arrow.png"), 32, 32, board);
+        test = new Button1(0, board.y - 640, 320, 320, new Texture("test.png"), 32, 32, board);
         none = new Button2("none", 330, board.y - 160, 160, 160, new Texture("empty.png"), 16, 16, board);
         wire = new Button2("wire", 330, board.y - 320, 160, 160, new Texture("wire_on.png"), 16, 16, board);
         not = new Button2("not", 500, board.y - 160, 160, 160, new Texture("not_on.png"), 16, 16, board);
@@ -143,7 +168,7 @@ public class ScreenGame implements Screen, InputProcessor{
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         System.out.println(screenX);
-        if(screenX < board.width * board.component_size && (Gdx.graphics.getHeight() - screenY - board.y ) > 0) {
+        if(!testing && screenX < board.width * board.component_size && (Gdx.graphics.getHeight() - screenY - board.y ) > 0) {
             if(type == "none")
                 board.removeObj(screenX / board.component_size + 1, (Gdx.graphics.getHeight() - screenY - board.y)/ board.component_size + 1);
             if(type == "wire")
@@ -155,6 +180,8 @@ public class ScreenGame implements Screen, InputProcessor{
         }
         if (rotate.isPressed(screenX, Gdx.graphics.getHeight() - screenY)) {
             rotate.onPress();
+        }
+        if(test.isPressed(screenX, Gdx.graphics.getHeight() - screenY)) {
             testing = true;
         }
 

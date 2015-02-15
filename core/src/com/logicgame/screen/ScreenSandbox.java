@@ -45,7 +45,7 @@ public class ScreenSandbox implements Screen, InputProcessor{
         game = g;
         spriteBatch = new SpriteBatch();
         board = new Board(0, Gdx.graphics.getHeight() - 10 * Board.component_size, 10,10, spriteBatch);
-        board.addComponent(new And(5,5, 0, board));
+        board.addComponent(new Nand(5,5, 1, board));
 
     }
 

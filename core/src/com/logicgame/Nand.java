@@ -5,8 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 /**
  * Created by Alex on 2/15/2015.
  */
-public class And extends Component{
-    public And(int x, int y, int rot, Board board) {
+public class Nand extends Component{
+    public Nand(int x, int y, int rot, Board board) {
         super(x, y, rot, 1, 1, 1, board);
 
     }
@@ -31,11 +31,11 @@ public class And extends Component{
                 }
                 if ((y + yOffset2< board.height + 1 && (board.gates[x][y + yOffset2] != null && (board.gates[x][y + yOffset2].state & 8) == 8) || (board.wires[x][y + yOffset2] != null && board.wires[x][y + yOffset2].state)) &&
                         (y > -yOffset1 && (board.gates[x][y + yOffset1] != null && (board.gates[x][y + yOffset1].state & 2) == 2) || (board.wires[x][y + yOffset1] != null && board.wires[x][y + yOffset1].state))) {
-                    this.newState = 1 << rot;
+                    this.newState = 0;
                     board.lightBridges(4, x, y, yOffset2);
                     board.lightBridges(3, x, y, -yOffset1);
                 } else {
-                    this.newState = 0;
+                    this.newState = 1 << rot;
                 }
                 break;
             case 3:
@@ -49,12 +49,12 @@ public class And extends Component{
                 }
                 if ((x + xOffset2 < board.width + 1 && (board.gates[x + xOffset2][y] != null && (board.gates[x + xOffset2][y].state & 1) == 1) || (board.wires[x + xOffset2][y] != null && board.wires[x + xOffset2][y].state)) &&
                         (x >= -xOffset1 && (board.gates[x + xOffset1][y] != null && (board.gates[x + xOffset1][y].state & 4) == 4) || (board.wires[x + xOffset1][y] != null && board.wires[x + xOffset1][y].state))) {
-                    this.newState = 1 << rot;
+                    this.newState = 0;
                     board.lightBridges(1, x, y, -xOffset1);
                     board.lightBridges(2, x, y, xOffset2);
 //                        System.out.println("2");135
                 } else {
-                    this.newState = 0;
+                    this.newState = 1 << rot;
                 }
                 break;
             case 0:
@@ -68,11 +68,11 @@ public class And extends Component{
                 }
                 if ((y + yOffset2< board.height + 1 && (board.gates[x][y + yOffset2] != null && (board.gates[x][y + yOffset2].state & 8) == 8) || (board.wires[x][y + yOffset2] != null && board.wires[x][y + yOffset2].state)) &&
                         (y > -yOffset1 && (board.gates[x][y + yOffset1] != null && (board.gates[x][y + yOffset1].state & 2) == 2) || (board.wires[x][y + yOffset1] != null && board.wires[x][y + yOffset1].state))) {
-                    this.newState = 1 << rot;
+                    this.newState = 0;
                     board.lightBridges(4, x, y, yOffset2);
                     board.lightBridges(3, x, y, -yOffset1);
                 } else {
-                    this.newState = 0;
+                    this.newState = 1 << rot;
                 }
                 break;
             case 1:
@@ -86,12 +86,12 @@ public class And extends Component{
                 }
                 if ((x + xOffset2 < board.width + 1 && (board.gates[x + xOffset2][y] != null && (board.gates[x + xOffset2][y].state & 1) == 1) || (board.wires[x + xOffset2][y] != null && board.wires[x + xOffset2][y].state)) &&
                         (x >= -xOffset1 && (board.gates[x + xOffset1][y] != null && (board.gates[x + xOffset1][y].state & 4) == 4) || (board.wires[x + xOffset1][y] != null && board.wires[x + xOffset1][y].state))) {
-                    this.newState = 1 << rot;
+                    this.newState = 0;
                     board.lightBridges(1, x, y, -xOffset1);
                     board.lightBridges(2, x, y, xOffset2);
 //                        System.out.println("2");135
                 } else {
-                    this.newState = 0;
+                    this.newState = 1 << rot;
                 }
                 break;
         }
@@ -110,4 +110,3 @@ public class And extends Component{
         }
     }
 }
-
