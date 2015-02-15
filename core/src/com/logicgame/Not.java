@@ -42,7 +42,7 @@ public class Not extends Component {
                     if (y + yOffset2< board.height + 1 && (board.gates[x][y + yOffset2] != null && (board.gates[x][y + yOffset2].state & 8) == 8) || (board.wires[x][y + yOffset2] != null && board.wires[x][y + yOffset2].state)) {
                         this.newState = 0;
                         board.lightBridges(4, x, y, yOffset2);
-//                        System.out.println("2");
+//                        System.out.println("2");135
                     } else {
                         this.newState = 1 << rot;
                     }
