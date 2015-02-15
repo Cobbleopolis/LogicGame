@@ -38,16 +38,16 @@ public class Wire {
             board.wires[x + xOffset1][y].update();
         }
 
-        while(x + xOffset2 < board.width && board.bridges[x + xOffset2][y] != null) {
+        while(x + xOffset2 < board.width + 1 && board.bridges[x + xOffset2][y] != null) {
 //            board.bridges[x + xOffset2][y].state = board.bridges[x + xOffset2][y].state | 1;
             xOffset2++;
         }
-        if(x + xOffset2 < board.width && board.wires[x + xOffset2][y] != null && !board.wires[x + xOffset2][y].state) {
+        if(x + xOffset2 < board.width + 1 && board.wires[x + xOffset2][y] != null && !board.wires[x + xOffset2][y].state) {
             board.lightBridges(2, x, y, xOffset2);
             board.wires[x + xOffset2][y].update();
         }
 
-        while(y + yOffset1 >= 0 && board.bridges[x][y + yOffset1] != null) {
+        while(y + yOffset1 >= + 1 && board.bridges[x][y + yOffset1] != null) {
 //            board.bridges[x][y + yOffset1].state = board.bridges[x][y + yOffset1].state | 2;
             yOffset1--;
         }

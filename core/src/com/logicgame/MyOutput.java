@@ -13,6 +13,7 @@ public class MyOutput extends Component{
         isIndestructable = true;
     }
     public void update() {
+        this.newState = 0;
         int xOffset1 = -1;
         int xOffset2 = 1;
         int yOffset1 = -1;
