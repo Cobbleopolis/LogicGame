@@ -6,8 +6,8 @@ import com.badlogic.gdx.graphics.Texture;
  * Created by Alex on 2/15/2015.
  */
 public class MyOutput extends Component{
-    Texture texOn = new Texture("wire_on.png");
-    Texture texOff = new Texture("wire_off.png");
+    Texture texOn = new Texture("out_on.png");
+    Texture texOff = new Texture("out_off.png");
     public MyOutput(int x, int y, Board board) {
         super(x, y, 0, 1, 1, 0, board);
         isIndestructable = true;

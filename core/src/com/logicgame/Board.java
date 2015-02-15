@@ -139,7 +139,7 @@ public class Board {
 
     }
     public void render() {
-        spriteBatch.draw(texture,x,y,width * component_size, height * component_size);
+        spriteBatch.draw(texture,x,y,width * component_size * 2, height * component_size * 2);
         for(int i = 0; i < gatesList.size(); i++) {
             gatesList.get(i).render();
         }
