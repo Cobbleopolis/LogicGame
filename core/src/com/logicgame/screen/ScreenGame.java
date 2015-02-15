@@ -76,8 +76,11 @@ public class ScreenGame implements Screen, InputProcessor{
             thisLevel.setIn();
             if(thisLevel.testOut())
                 thisLevel.num++;
-            if(thisLevel.num == thisLevel.max)
+            if(thisLevel.num == thisLevel.max) {
                 System.out.println("you win!");
+                thisLevel.num = 0;
+                testing = false;
+            }
         }
     }
 
@@ -152,6 +155,7 @@ public class ScreenGame implements Screen, InputProcessor{
         }
         if (rotate.isPressed(screenX, Gdx.graphics.getHeight() - screenY)) {
             rotate.onPress();
+            testing = true;
         }
 
         if (none.isPressed(screenX, Gdx.graphics.getHeight() - screenY)) {

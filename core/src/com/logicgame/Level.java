@@ -39,6 +39,7 @@ public class Level {
     public boolean testOut() {
         for(int i = 0; i < outputs.length; i++) {
             if(outputs[i].state != outs[num][i]) {
+                System.out.println("fail");
                 return false;
             }
         }
