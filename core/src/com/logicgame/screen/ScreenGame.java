@@ -48,7 +48,7 @@ public class ScreenGame implements Screen, InputProcessor{
     public ScreenGame(Game g, String level) {
         game = g;
         spriteBatch = new SpriteBatch();
-        board = new Board(0, Gdx.graphics.getHeight() - 20 * Board.component_size, 20,20, spriteBatch);
+        board = new Board(0, Gdx.graphics.getHeight() - 10 * Board.component_size, 10,10, spriteBatch);
         MyInput[] temp1 = {new MyInput(4, 1, board), new MyInput(8, 1, board)};
         MyOutput[] temp2 = {new MyOutput(6, 9, board)};
         int[][] temp3 = {{0, 0}, {15, 0}, {0, 15}, {15, 15}};
