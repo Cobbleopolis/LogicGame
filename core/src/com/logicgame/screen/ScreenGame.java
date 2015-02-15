@@ -40,7 +40,7 @@ public class ScreenGame implements Screen, InputProcessor{
      *
      * @param g Game which called this splash screen.
      */
-    public ScreenGame(Game g) {
+    public ScreenGame(Game g, String level) {
         game = g;
         spriteBatch = new SpriteBatch();
         board = new Board(0, Gdx.graphics.getHeight() - 10 * Board.component_size, 10,10, spriteBatch);

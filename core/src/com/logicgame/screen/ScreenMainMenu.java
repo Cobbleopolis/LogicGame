@@ -33,7 +33,7 @@ public class ScreenMainMenu implements Screen {
     //1920x1080
     int x = 0;
     int y = 0;
-    float fontAlpha = 0f;
+    public static float fontAlpha = 0f;
 
     /**
      * Constructor for the splash screen

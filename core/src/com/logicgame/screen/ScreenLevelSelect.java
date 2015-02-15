@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -19,6 +20,9 @@ import com.logicgame.util.UtilDraw;
  * Created by Alex on 2/14/2015.
  */
 public class ScreenLevelSelect implements Screen {
+
+    BitmapFont font;
+
     Stage stage;
 
     Skin skin;
@@ -50,6 +54,11 @@ public class ScreenLevelSelect implements Screen {
 
         stage.act();
         stage.draw();
+        spriteBatch.begin();
+        font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+        font.setScale(2.5f);
+        font.draw(spriteBatch, "Level Select", Gdx.graphics.getWidth()/2 - font.getBounds("Level Select").width/2, Gdx.graphics.getHeight() - (font.getBounds("Level Select").height + 30));
+        spriteBatch.end();
         if (Gdx.input.isKeyPressed(Input.Keys.BACK) && LogicGame.backDelay == 0){
             game.setScreen(new ScreenMainMenu(game));
             LogicGame.backDelay = 30;
@@ -82,22 +91,31 @@ public class ScreenLevelSelect implements Screen {
     }
 
     @Override
-    public void show() {
+    public void show() { //button height is 177.0
         Gdx.input.setCatchBackKey(true);
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        spriteBatch = new SpriteBatch();
         stage = new Stage();
         skin = UtilDraw.createBasicSkin();
-        TextButton button = new TextButton("Level 1", skin); // Use the initialized skin
-        button.setWidth(340);
-        button.addListener(new ClickListener() {
-            public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new ScreenGame(game));
-            }
-        });
-        button.setPosition(Gdx.graphics.getWidth()/2 - button.getWidth()/2 , Gdx.graphics.getHeight()/2);
+        font = UtilDraw.font;
+        for(int i = 0; i < 7; i++){
+            for(int j = 0; j < 5; j++){
+                final String lvl = "" + (j + (i * 5) + 1);
+                TextButton button = new TextButton(lvl, skin); // Use the initialized skin
+                button.setWidth(150);
+                button.setHeight(150);
+                button.addListener(new ClickListener() {
+                    public void clicked(InputEvent event, float x, float y) {
+                        game.setScreen(new ScreenGame(game, lvl));
+                    }
+                });
 
-        stage.addActor(button);
+                button.setPosition(50 + (200 * j), Gdx.graphics.getHeight() - (200 * (i + 1)) - 300);
+
+                stage.addActor(button);
+            }
+        }
 
         Gdx.input.setInputProcessor(stage);// Make the stage consume events
     }
