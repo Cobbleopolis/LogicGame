@@ -13,13 +13,23 @@ public class Level {
     int[][] outs;
     public int num = 0;
     public int max = 4;
-    public Level(int num, MyInput[] inputs, MyOutput[] outputs, int[][] ins, int[][] outs) {
+    Board board;
+    public Level(MyInput[] inputs, MyOutput[] outputs, int[][] ins, int[][] outs, Board board) {
         this.num = num;
         this.inputs = inputs;
         this.outputs = outputs;
         this.ins = ins;
         this.outs = outs;
+        this.board = board;
 
+    }
+    public void init() {
+        for(int i = 0; i < inputs.length; i++) {
+            board.addComponent(inputs[i]);
+        }
+        for(int i = 0; i < outputs.length; i++) {
+            board.addComponent(outputs[i]);
+        }
     }
     public void setIn() {
         for(int i = 0; i < inputs.length; i++) {

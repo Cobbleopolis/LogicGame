@@ -6,10 +6,10 @@ import com.badlogic.gdx.graphics.Texture;
  * Created by Alex on 2/15/2015.
  */
 public class MyOutput extends Component{
-    Texture texOn = new Texture("write_on.png");
-    Texture texOff = new Texture("write_off.png");
-    public MyOutput(int x, int y, int rot, int width, int height, int state, Board board) {
-        super(x, y, rot, width, height, state, board);
+    Texture texOn = new Texture("wire_on.png");
+    Texture texOff = new Texture("wire_off.png");
+    public MyOutput(int x, int y, Board board) {
+        super(x, y, 0, 1, 1, 0, board);
         isIndestructable = true;
     }
     public void update() {

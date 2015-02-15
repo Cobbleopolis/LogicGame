@@ -20,15 +20,19 @@ import java.util.ArrayList;
  */
 public class ScreenGame implements Screen, InputProcessor{
     Stage stage;
-
+    String type;
     Skin skin;
 
     Game game;
     Board board;
     Button1 rotate;
+    Button2 none;
+    Button2 wire;
+    Button2 not;
+    Button2 bridge;
 
     SpriteBatch spriteBatch;
-    Level level;
+    Level thisLevel;
     boolean testing = false;
     int timeout = 0;
 
@@ -41,7 +45,11 @@ public class ScreenGame implements Screen, InputProcessor{
         game = g;
         spriteBatch = new SpriteBatch();
         board = new Board(0, Gdx.graphics.getHeight() - 10 * Board.component_size, 10,10, spriteBatch);
-//        level = new Level([new MyInput(1, 1, board), new MyInput(1, 1, board)])
+        MyInput[] temp1 = {new MyInput(4, 1, board), new MyInput(8, 1, board)};
+        MyOutput[] temp2 = {new MyOutput(6, 9, board)};
+        int[][] temp3 = {{0, 0}, {15, 0}, {0, 15}, {15, 15}};
+        int[][] temp4 = {{0}, {0}, {0}, {15}};
+        thisLevel = new Level(temp1, temp2, temp3, temp4, board);
 
     }
 
@@ -51,6 +59,10 @@ public class ScreenGame implements Screen, InputProcessor{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         spriteBatch.begin();
         rotate.render();
+        none.render();
+        wire.render();
+        not.render();
+        bridge.render();
         board.render();
         board.update();
         spriteBatch.end();
@@ -61,10 +73,10 @@ public class ScreenGame implements Screen, InputProcessor{
             LogicGame.backDelay = 30;
         }
         if(testing) {
-            level.setIn();
-            if(level.testOut())
-                level.num++;
-            if(level.num == level.max)
+            thisLevel.setIn();
+            if(thisLevel.testOut())
+                thisLevel.num++;
+            if(thisLevel.num == thisLevel.max)
                 System.out.println("you win!");
         }
     }
@@ -99,9 +111,13 @@ public class ScreenGame implements Screen, InputProcessor{
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage = new Stage();
+        thisLevel.init();
         skin = UtilDraw.createBasicSkin();
-//        rotate = new Button1(0,board.y - 320,320,320,new Texture("arrow.png"),board);
-
+        rotate = new Button1(0, board.y - 320, 320, 320, new Texture("arrow.png"), 32, 32, board);
+        none = new Button2("none", 330, board.y - 160, 160, 160, new Texture("empty.png"), 16, 16, board);
+        wire = new Button2("wire", 330, board.y - 320, 160, 160, new Texture("wire_on.png"), 16, 16, board);
+        not = new Button2("not", 500, board.y - 160, 160, 160, new Texture("not_on.png"), 16, 16, board);
+        bridge = new Button2("bridge", 500, board.y - 320, 160, 160, new Texture("bridge1.png"), 16, 16, board);
         Gdx.input.setInputProcessor(this);// Make the stage consume events
 
     }
@@ -125,11 +141,36 @@ public class ScreenGame implements Screen, InputProcessor{
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         System.out.println(screenX);
         if(screenX < board.width * board.component_size && (Gdx.graphics.getHeight() - screenY - board.y ) > 0) {
-            board.addComponent(new Not(screenX / board.component_size + 1, (Gdx.graphics.getHeight() - screenY - board.y)/ board.component_size + 1, rotate.rot, board));
+            if(type == "none")
+                board.removeObj(screenX / board.component_size + 1, (Gdx.graphics.getHeight() - screenY - board.y)/ board.component_size + 1);
+            if(type == "wire")
+                board.addWire(new Wire(screenX / board.component_size + 1, (Gdx.graphics.getHeight() - screenY - board.y)/ board.component_size + 1, board));
+            if(type == "not")
+                board.addComponent(new Not(screenX / board.component_size + 1, (Gdx.graphics.getHeight() - screenY - board.y)/ board.component_size + 1, rotate.rot, board));
+            if(type == "bridge")
+                board.addBridge(new Bridge(screenX / board.component_size + 1, (Gdx.graphics.getHeight() - screenY - board.y) / board.component_size + 1, board));
         }
         if (rotate.isPressed(screenX, Gdx.graphics.getHeight() - screenY)) {
             rotate.onPress();
-            testing = true;
+        }
+
+        if (none.isPressed(screenX, Gdx.graphics.getHeight() - screenY)) {
+            setSelected(none.type);
+            type = none.type;
+        }
+
+        if (wire.isPressed(screenX, Gdx.graphics.getHeight() - screenY)) {
+            setSelected(wire.type);
+            type = wire.type;
+        }
+        if (not.isPressed(screenX, Gdx.graphics.getHeight() - screenY)) {
+            setSelected(not.type);
+            type = not.type;
+        }
+
+        if (bridge.isPressed(screenX, Gdx.graphics.getHeight() - screenY)) {
+            setSelected(bridge.type);
+            type = bridge.type;
         }
         return false;
     }
@@ -152,5 +193,30 @@ public class ScreenGame implements Screen, InputProcessor{
     @Override
     public boolean scrolled(int amount) {
         return false;
+    }
+    public void setSelected(String sel){
+        if(none.type == sel) {
+            none.isSelected = true;
+        } else {
+            none.isSelected = false;
+        }
+
+        if(wire.type == sel) {
+            wire.isSelected = true;
+        } else {
+            wire.isSelected = false;
+        }
+
+        if(not.type == sel) {
+            not.isSelected = true;
+        } else {
+            not.isSelected = false;
+        }
+
+        if(bridge.type == sel) {
+            bridge.isSelected = true;
+        } else {
+            bridge.isSelected = false;
+        }
     }
 }
