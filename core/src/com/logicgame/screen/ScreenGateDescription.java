@@ -19,10 +19,10 @@ import com.logicgame.util.UtilDraw;
 public class ScreenGateDescription implements Screen {
 
     Texture wireTex = new Texture("wire_on.png");
-    String wireDesc = "Carries Signal";
     Texture notGate = new Texture("not_on.png");
     Texture bridgeGate = new Texture("bridge1.png");
     Texture andGate = new Texture("and_on.png");
+    Texture nandGate = new Texture("nand_on.png");
 
     BitmapFont font;
 
@@ -55,8 +55,23 @@ public class ScreenGateDescription implements Screen {
         stage.act();
         stage.draw();
         spriteBatch.begin();
+
         spriteBatch.draw(wireTex, 10, Gdx.graphics.getHeight() - 200, 100, 100);
-        font.draw(spriteBatch, "Carries signal", 130, Gdx.graphics.getHeight() - (200 - (float)(font.getBounds("Carries signal").height * 1.5)));
+        font.drawMultiLine(
+                spriteBatch, "Carries signal.", 130, Gdx.graphics.getHeight() - (200 - (float) (font.getBounds("Carries signal").height * 1.5)));
+
+        spriteBatch.draw(notGate, 10, Gdx.graphics.getHeight() - 380, 100, 100);
+        font.drawMultiLine(
+                spriteBatch, "Inverts signal.", 130, Gdx.graphics.getHeight() - (350 - (float)(font.getBounds("Inverts Signal").height * 1.5)));
+
+        spriteBatch.draw(bridgeGate, 10, Gdx.graphics.getHeight() - 560, 100, 100);
+        font.drawMultiLine(
+                spriteBatch, "Allows two lines to intersect\nwithout affecting the signals.", 130, Gdx.graphics.getHeight() - (520 - (float)(font.getBounds("Inverts Signal").height * 1.5)));
+
+        spriteBatch.draw(andGate, 10, Gdx.graphics.getHeight() - 740, 100, 100);
+        font.drawMultiLine(
+                spriteBatch, "Both inputs must be on for\nits output to be on.", 130, Gdx.graphics.getHeight() - (700 - (float)(font.getBounds("Inverts Signal").height * 1.5)));
+
         spriteBatch.end();
         if (Gdx.input.isKeyPressed(Input.Keys.BACK) && LogicGame.backDelay == 0){
             game.setScreen(new ScreenMainMenu(game));
