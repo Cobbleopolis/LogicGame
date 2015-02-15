@@ -104,15 +104,15 @@ public class ScreenMainMenu implements Screen {
 
         font = UtilDraw.font;
 
-        TextButton levelSelectbutton = new TextButton("Level Select", skin); // Use the initialized skin
-        levelSelectbutton.setWidth(500);
-        levelSelectbutton.addListener(new ClickListener() {
+        TextButton levelSelectButton = new TextButton("Level Select", skin); // Use the initialized skin
+        levelSelectButton.setWidth(500);
+        levelSelectButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(new ScreenLevelSelect(game));
             }
         });
-        levelSelectbutton.setPosition(Gdx.graphics.getWidth() / 2 - levelSelectbutton.getWidth() / 2, Gdx.graphics.getHeight() / 2);
-        stage.addActor(levelSelectbutton);
+        levelSelectButton.setPosition(Gdx.graphics.getWidth() / 2 - levelSelectButton.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+        stage.addActor(levelSelectButton);
 
         TextButton sandboxButton = new TextButton("Sandbox", skin); // Use the initialized skin
         sandboxButton.setWidth(500);
