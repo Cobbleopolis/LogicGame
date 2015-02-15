@@ -26,7 +26,7 @@ public class Board {
         this.y = y;
         this.width = width;
         this.height = height;
-        this.wires = new Wire[width+1][height+1];
+        this.wires = new Wire[width+2][height+2];
         this.gates = new Component[width+2][height+2];
         this.bridges = new Bridge[width+2][height+2];
         this.wiresList = new ArrayList<Wire>();
