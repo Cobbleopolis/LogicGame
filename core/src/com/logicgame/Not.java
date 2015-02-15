@@ -11,8 +11,8 @@ public class Not extends Component {
         super(x, y, rot, 1, 1, 1, board);
 
     }
-    Texture texOn = new Texture("wire_on.png");
-    Texture texOff = new Texture("wire_off.png");
+    Texture texOn = new Texture("not_on.png");
+    Texture texOff = new Texture("not_off.png");
     @Override
     public void update() {
 //        if (this.state != 0) {
@@ -57,10 +57,11 @@ public class Not extends Component {
     }
     @Override
     public void render() {
+
         if(state > 0) {
-            board.spriteBatch.draw(texOn, x * board.component_size + board.x, y * board.component_size + board.y, board.component_size, board.component_size);
+            board.spriteBatch.draw(texOn, x * board.component_size + board.x, y * board.component_size + board.y, board.component_size / 2, board.component_size / 2, board.component_size, board.component_size, 1, 1, rot * 90,0,0,16,16,false,false);
         } else {
-            board.spriteBatch.draw(texOff, x * board.component_size + board.x, y * board.component_size + board.y, board.component_size, board.component_size);
+            board.spriteBatch.draw(texOff, x * board.component_size + board.x, y * board.component_size + board.y, board.component_size / 2, board.component_size / 2, board.component_size, board.component_size, 1, 1, rot * 90,0,0,16,16,false,false);
         }
     }
 }
