@@ -34,7 +34,7 @@ public class Not extends Component {
                         this.newState = 1 << rot;
                     }
                     break;
-                case 1:
+                case 3:
                     while(y + yOffset2 < board.height && board.bridges[x][y + yOffset2] != null) {
 //                        board.bridges[x][y + yOffset2].state = board.bridges[x][y + yOffset2].state | 2;
                         yOffset2++;
@@ -60,7 +60,7 @@ public class Not extends Component {
                         this.newState = 1 << rot;
                     }
                     break;
-                case 3:
+                case 1:
                     while(y + yOffset1 >= 0 && board.bridges[x][y + yOffset1] != null) {
 //                        board.bridges[x][y + yOffset1].state = board.bridges[x][y + yOffset1].state | 2;
                         yOffset1--;
@@ -83,9 +83,9 @@ public class Not extends Component {
     public void render() {
 
         if(state > 0) {
-            board.spriteBatch.draw(texOn, (x - 1) * board.component_size + board.x, (y - 1) * board.component_size + board.y, board.component_size / 2, board.component_size / 2, board.component_size, board.component_size, 1, 1, rot * 90,0,0,16,16,false,false);
+            board.spriteBatch.draw(texOn, (x - 1) * board.component_size + board.x, (y - 1) * board.component_size + board.y, board.component_size / 2, board.component_size / 2, board.component_size, board.component_size, 1, 1, -rot * 90,0,0,16,16,false,false);
         } else {
-            board.spriteBatch.draw(texOff, (x - 1) * board.component_size + board.x, (y - 1) * board.component_size + board.y, board.component_size / 2, board.component_size / 2, board.component_size, board.component_size, 1, 1, rot * 90,0,0,16,16,false,false);
+            board.spriteBatch.draw(texOff, (x - 1) * board.component_size + board.x, (y - 1) * board.component_size + board.y, board.component_size / 2, board.component_size / 2, board.component_size, board.component_size, 1, 1, -rot * 90,0,0,16,16,false,false);
         }
     }
 }
