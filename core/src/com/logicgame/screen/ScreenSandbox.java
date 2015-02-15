@@ -17,6 +17,7 @@ import com.logicgame.Not;
 import com.logicgame.util.UtilDraw;
 import com.logicgame.Button1;
 
+
 /**
  * Created by Alex on 2/14/2015.
  */
@@ -40,6 +41,7 @@ public class ScreenSandbox implements Screen, InputProcessor{
         game = g;
         spriteBatch = new SpriteBatch();
         board = new Board(0, Gdx.graphics.getHeight() - 10 * Board.component_size, 10,10, spriteBatch);
+//        board.addComponent(new Input(5,5, board));
 
     }
 

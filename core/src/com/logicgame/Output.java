@@ -13,48 +13,53 @@ public class Output extends Component{
         isIndestructable = true;
     }
     public void update() {
-        this.state = 15;
         int xOffset1 = -1;
         int xOffset2 = 1;
         int yOffset1 = -1;
         int yOffset2 = 1;
-
         while(x + xOffset1 >= 0 && board.bridges[x + xOffset1][y] != null) {
-//            board.bridges[x + xOffset1][y].state = board.bridges[x + xOffset1][y].state | 1;
+//                        board.bridges[x + xOffset1][y].state = board.bridges[x + xOffset1][y].state | 1;
             xOffset1--;
         }
-//        if(x >= -xOff)
-        if(x >= -xOffset1 && board.wires[x + xOffset1][y] != null && !board.wires[x + xOffset1][y].state) {
+        if (x >= -xOffset1 && (board.gates[x + xOffset1][y] != null && (board.gates[x + xOffset1][y].state & 4) == 4) || (board.wires[x + xOffset1][y] != null && board.wires[x + xOffset1][y].state)) {
+            this.newState = 0;
             board.lightBridges(1, x, y, -xOffset1);
-            board.wires[x + xOffset1][y].update();
+            System.out.println("1");
+        } else {
+            this.newState = 1 << rot;
         }
-
-        while(x + xOffset2 < board.width && board.bridges[x + xOffset2][y] != null) {
-//            board.bridges[x + xOffset2][y].state = board.bridges[x + xOffset2][y].state | 1;
-            xOffset2++;
-        }
-        if(x + xOffset2 < board.width && board.wires[x + xOffset2][y] != null && !board.wires[x + xOffset2][y].state) {
-            board.lightBridges(2, x, y, xOffset2);
-            board.wires[x + xOffset2][y].update();
-        }
-
-        while(y + yOffset1 >= 0 && board.bridges[x][y + yOffset1] != null) {
-//            board.bridges[x][y + yOffset1].state = board.bridges[x][y + yOffset1].state | 2;
-            yOffset1--;
-        }
-        if(y >= -yOffset1 && board.wires[x][y + yOffset1] != null && !board.wires[x][y + yOffset1].state) {
-            board.lightBridges(3, x, y, -yOffset1);
-            board.wires[x][y + yOffset1].update();
-        }
-
-
         while(y + yOffset2 < board.height && board.bridges[x][y + yOffset2] != null) {
-//            board.bridges[x][y + yOffset2].state = board.bridges[x][y + yOffset2].state | 2;
+//                        board.bridges[x][y + yOffset2].state = board.bridges[x][y + yOffset2].state | 2;
             yOffset2++;
         }
-        if(y + yOffset2>= board.height && board.wires[x][y + yOffset2] != null && !board.wires[x][y + yOffset2].state) {
+        if (y + yOffset2< board.height + 1 && (board.gates[x][y + yOffset2] != null && (board.gates[x][y + yOffset2].state & 8) == 8) || (board.wires[x][y + yOffset2] != null && board.wires[x][y + yOffset2].state)) {
+            this.newState = 0;
             board.lightBridges(4, x, y, yOffset2);
-            board.wires[x][y + yOffset2].update();
+//                        System.out.println("2");
+        } else {
+            this.newState = 1 << rot;
+        }
+        while(x + xOffset2 < board.width && board.bridges[x + xOffset2][y] != null) {
+//                        board.bridges[x + xOffset2][y].state = board.bridges[x + xOffset2][y].state | 1;
+            xOffset2++;
+        }
+        if (x + xOffset2 < board.width + 1 && (board.gates[x + xOffset2][y] != null && (board.gates[x + xOffset2][y].state & 1) == 1) || (board.wires[x + xOffset2][y] != null && board.wires[x + xOffset2][y].state)) {
+//                        System.out.println("3");
+            this.newState = 0;
+            board.lightBridges(2, x, y, xOffset2);
+        } else {
+            this.newState = 1 << rot;
+        }
+        while(y + yOffset1 >= 0 && board.bridges[x][y + yOffset1] != null) {
+//                        board.bridges[x][y + yOffset1].state = board.bridges[x][y + yOffset1].state | 2;
+            yOffset1--;
+        }
+        if (y > -yOffset1 && (board.gates[x][y + yOffset1] != null && (board.gates[x][y + yOffset1].state & 2) == 2) || (board.wires[x][y + yOffset1] != null && board.wires[x][y + yOffset1].state)) {
+            this.newState = 0;
+            board.lightBridges(3, x, y, -yOffset1);
+//                        System.out.println("4");
+        } else {
+            this.newState = 1 << rot;
         }
     }
     public int getState() {

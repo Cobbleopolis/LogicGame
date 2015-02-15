@@ -10,8 +10,8 @@ import javax.xml.soap.Text;
 public class Input extends Component{
     Texture texOn = new Texture("write_on.png");
     Texture texOff = new Texture("write_off.png");
-    public Input(int x,int y,int rot, int width, int height, int state, Board board) {
-        super(x, y, rot, width, height, state, board);
+    public Input(int x,int y, Board board) {
+        super(x, y, 0, 1, 1, 15, board);
         isIndestructable = true;
     }
     public void setState(int state) {
