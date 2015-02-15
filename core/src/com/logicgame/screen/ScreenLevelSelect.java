@@ -105,7 +105,12 @@ public class ScreenLevelSelect implements Screen {
         for(int i = 0; i < 7; i++){
             for(int j = 0; j < 5; j++){
                 final int lvl = (j + (i * 5) + 1);
-                TextButton button = new TextButton("" + lvl, skin.get("disabled", TextButton.TextButtonStyle.class)); // Use the initialized skin
+                TextButton button;
+                if(lvl <= 4){
+                    button = new TextButton("" + lvl, skin.get("default", TextButton.TextButtonStyle.class)); // Use the initialized skin
+                } else {
+                    button = new TextButton("" + lvl, skin.get("disabled", TextButton.TextButtonStyle.class)); // Use the initialized skin
+                }
                 button.setWidth(150);
                 button.setHeight(150);
                 button.addListener(new ClickListener() {
