@@ -43,15 +43,8 @@ public class ScreenGame implements Screen, InputProcessor{
     public ScreenGame(Game g) {
         game = g;
         spriteBatch = new SpriteBatch();
-        board = new Board(0, Gdx.graphics.getHeight() - 20 * Board.component_size, 20,20, spriteBatch);
-        board.addComponent(new Not(10,10,0,board));
-        board.addComponent(new Not(9,10,2,board));
-        board.addWire(new Wire(8, 10, board));
-        board.addWire(new Wire(8, 11, board));
-        board.addWire(new Wire(9, 11, board));
-        board.addWire(new Wire(10, 11, board));
-        board.addWire(new Wire(11, 11, board));
-        board.addWire(new Wire(11, 10, board));
+        board = new Board(0, Gdx.graphics.getHeight() - 10 * Board.component_size, 10,10, spriteBatch);
+
     }
 
     @Override

@@ -17,7 +17,7 @@ public class Board {
     ArrayList<Wire> wiresList;
     ArrayList<Component> gatesList;
     SpriteBatch spriteBatch;
-    public static int component_size = 54;
+    public static int component_size = 108;
     Texture texture = new Texture("grid.png");
     public Board(int x, int y, int width, int height, SpriteBatch spriteBatch) {
         this.x = x;
