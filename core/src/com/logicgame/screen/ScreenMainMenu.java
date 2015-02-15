@@ -3,11 +3,24 @@ package com.logicgame.screen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.logicgame.util.UtilDraw;
 
 public class ScreenMainMenu implements Screen {
+
+    Stage stage;
+
+    Skin skin;
 
     Game game;
 
@@ -31,32 +44,11 @@ public class ScreenMainMenu implements Screen {
 
     @Override
     public void render(float delta) {
+        Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        spriteBatch.begin();
-        spriteBatch.draw(img, x, y);
-        spriteBatch.end();
-        x += xVel;
-        y += yVel;
-        if(x > Gdx.graphics.getWidth() - 600) {
-            xVel *= -1;
-//            x = Gdx.graphics.getWidth() - 600;
-        }
-        if(x < 0){
-            xVel *= -1;
-//            x = 0;
-        }
-        if(y > Gdx.graphics.getHeight() - 600) {
-            yVel *= -1;
-//            y = Gdx.graphics.getHeight() - 600;
-        }
-        if(y < 0){
-            yVel *= -1;
-//            y = 0;
-        }
 
-        if (Gdx.input.justTouched())
-            System.out.println("Touch");
-//            myGame.setScreen(new GameScreen());
+        stage.act();
+        stage.draw();
     }
 
     @Override
@@ -86,7 +78,19 @@ public class ScreenMainMenu implements Screen {
 
     @Override
     public void show() {
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        spriteBatch = new SpriteBatch();
+        stage = new Stage();
+        skin = UtilDraw.createBasicSkin();
+        TextButton button = new TextButton("New game", skin); // Use the initialized skin
+//        button.padLeft(30f);
+//        button.padRight(30f);
+        button.pad(100f);
+        button.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                System.out.println("Touch");
+            }
+        });
+        button.setPosition(Gdx.graphics.getWidth()/2 - button.getWidth()/2 , Gdx.graphics.getHeight()/2);
+        stage.addActor(button);
+        Gdx.input.setInputProcessor(stage);// Make the stage consume events
     }
 }
