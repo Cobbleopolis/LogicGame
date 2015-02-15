@@ -100,7 +100,7 @@ public class ScreenGame implements Screen, InputProcessor{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage = new Stage();
         skin = UtilDraw.createBasicSkin();
-        rotate = new Button1(0,board.y - 320,320,320,new Texture("arrow.png"),board);
+//        rotate = new Button1(0,board.y - 320,320,320,new Texture("arrow.png"),board);
 
         Gdx.input.setInputProcessor(this);// Make the stage consume events
 

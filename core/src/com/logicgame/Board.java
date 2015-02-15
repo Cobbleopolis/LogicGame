@@ -87,7 +87,7 @@ public class Board {
             removeWire(wires[b.x][b.y]);
         }
         if(bridges[b.x][b.y] != null) {
-            removeBridge(bridges[b.x][b.y]);
+//            removeBridge(bridges[b.x][b.y]);
         }
         if(gates[b.x][b.y] != null && !gates[b.x][b.y].isIndestructable) {
             removeComp(gates[b.x][b.y]);
