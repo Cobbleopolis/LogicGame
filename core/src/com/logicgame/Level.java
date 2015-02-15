@@ -12,15 +12,18 @@ public class Level {
     int[][] ins;
     int[][] outs;
     public int num = 0;
-    public int max = 4;
+    public int max;
     Board board;
-    public Level(MyInput[] inputs, MyOutput[] outputs, int[][] ins, int[][] outs, Board board) {
+    public String instructions;
+    public Level(MyInput[] inputs, MyOutput[] outputs, int[][] ins, int[][] outs, Board board, String instructions) {
         this.num = num;
         this.inputs = inputs;
         this.outputs = outputs;
         this.ins = ins;
         this.outs = outs;
         this.board = board;
+        this.max = ins.length;
+        this.instructions = instructions;
 
     }
     public void init() {

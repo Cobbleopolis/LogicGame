@@ -4,6 +4,7 @@ import com.badlogic.gdx.*;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -39,6 +40,7 @@ public class ScreenGame implements Screen, InputProcessor{
     Level thisLevel;
     boolean testing = false;
     int timeout = 0;
+    BitmapFont font = UtilDraw.font;
 
     /**
      * Constructor for the splash screen
@@ -64,7 +66,9 @@ public class ScreenGame implements Screen, InputProcessor{
         wire.render();
         not.render();
         bridge.render();
+        font.drawMultiLine(spriteBatch, thisLevel.instructions, 700, board.y - 20);
         board.render();
+
         board.update();
         if(status == 1) {
             spriteBatch.draw(win,330,board.y - 640, 320, 320);
@@ -83,20 +87,26 @@ public class ScreenGame implements Screen, InputProcessor{
         if(testing) {
             status = 0;
             thisLevel.setIn();
-            if(thisLevel.testOut()) {
-                thisLevel.num++;
-                timeout = 0;
-            } else {
-                timeout++;
+
+            timeout++;
+            if(timeout == 100) {
+                if (thisLevel.testOut()) {
+                    thisLevel.num++;
+                    timeout = 0;
+                }
             }
-            if(thisLevel.num == thisLevel.max) {
-                status = 1;
+            if(timeout == 100) {
+                if(thisLevel.testOut()) {
+                    thisLevel.num++;
+                    timeout = 0;
+                }
+                status = 2;
                 thisLevel.num = 0;
                 timeout = 0;
                 testing = false;
             }
-            if(timeout == 100) {
-                status = 2;
+            if(thisLevel.num == thisLevel.max) {
+                status = 1;
                 thisLevel.num = 0;
                 timeout = 0;
                 testing = false;
@@ -251,36 +261,44 @@ public class ScreenGame implements Screen, InputProcessor{
         MyOutput[] tempt = {new MyOutput(6, 9, board)};
         int[][] tempc = {{0}, {15}};
         int[][] tempu = {{0}, {15}};
-        Level level = new Level(temp0, tempt, tempc, tempu, board);
+        Level level = new Level(temp0, tempt, tempc, tempu, board, "Match input with output");
         switch(lvl) {
             case 1:
-                MyInput[] temp1 = {new MyInput(4, 1, board), new MyInput(8, 1, board)};
+                MyInput[] temp1 = {new MyInput(4, 1, board), new MyInput(9, 1, board)};
                 MyOutput[] temp2 = {new MyOutput(6, 9, board)};
                 int[][] temp3 = {{0, 0}, {15, 0}, {0, 15}, {15, 15}};
                 int[][] temp4 = {{0}, {15}, {15}, {15}};
-                level = new Level(temp1, temp2, temp3, temp4, board);
+                level = new Level(temp1, temp2, temp3, temp4, board, "Turn on output when\n either input is on");
             break;
             case 2:
-                MyInput[] temp5 = {new MyInput(4, 1, board), new MyInput(8, 1, board)};
+                MyInput[] temp5 = {new MyInput(4, 1, board), new MyInput(9, 1, board)};
                 MyOutput[] temp6 = {new MyOutput(6, 9, board)};
                 int[][] temp7 = {{0, 0}, {15, 0}, {0, 15}, {15, 15}};
                 int[][] temp8 = {{15}, {0}, {0}, {0}};
-                level = new Level(temp5, temp6, temp7, temp8, board);
+                level = new Level(temp5, temp6, temp7, temp8, board, "Turn on output when\n neither input is on");
             break;
             case 3:
-                MyInput[] temp9 = {new MyInput(4, 1, board), new MyInput(8, 1, board)};
+                MyInput[] temp9 = {new MyInput(4, 1, board), new MyInput(9, 1, board)};
                 MyOutput[] temp10 = {new MyOutput(6, 9, board)};
                 int[][] temp11 = {{0, 0}, {15, 0}, {0, 15}, {15, 15}};
                 int[][] temp12 = {{15}, {15}, {15}, {0}};
-                level =  new Level(temp9, temp10, temp11, temp12, board);
+                level =  new Level(temp9, temp10, temp11, temp12, board, "Turn off output when\n both inputs are on");
             break;
             case 4:
-                MyInput[] temp13 = {new MyInput(4, 1, board), new MyInput(8, 1, board)};
+                MyInput[] temp13 = {new MyInput(4, 1, board), new MyInput(9, 1, board)};
                 MyOutput[] temp14 = {new MyOutput(6, 9, board)};
                 int[][] temp15 = {{0, 0}, {15, 0}, {0, 15}, {15, 15}};
                 int[][] temp16 = {{0}, {0}, {0}, {15}};
-                level =  new Level(temp13, temp14, temp15, temp16, board);
+                level =  new Level(temp13, temp14, temp15, temp16, board, "Turn on output when\n both inputs are on");
                 break;
+            case 5:
+                MyInput[] temp17 = {new MyInput(4, 1, board), new MyInput(9, 1, board)};
+                MyOutput[] temp18 = {new MyOutput(6, 9, board)};
+                int[][] temp19 = {{0, 0}, {15, 0}, {0, 0}, {0, 15}, {0, 0}};
+                int[][] temp20 = {{0}, {15}, {15}, {0}, {0}};
+                level =  new Level(temp17, temp18, temp19, temp20, board, "Turn on output when\n first input is on.\n Then, keep output on\n until second input\n turns on.");
+                break;
+
 
         }
         return level;
