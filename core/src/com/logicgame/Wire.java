@@ -61,7 +61,7 @@ public class Wire {
 //            board.bridges[x][y + yOffset2].state = board.bridges[x][y + yOffset2].state | 2;
             yOffset2++;
         }
-        if(y + yOffset2>= board.height && board.wires[x][y + yOffset2] != null && !board.wires[x][y + yOffset2].state) {
+        if(y + yOffset2 < board.height && board.wires[x][y + yOffset2] != null && !board.wires[x][y + yOffset2].state) {
             board.lightBridges(4, x, y, yOffset2);
             board.wires[x][y + yOffset2].update();
         }

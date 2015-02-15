@@ -41,8 +41,7 @@ public class ScreenGame implements Screen, InputProcessor{
         game = g;
         spriteBatch = new SpriteBatch();
         board = new Board(0, Gdx.graphics.getHeight() - 10 * Board.component_size, 10,10, spriteBatch);
-
-        level = new Level(new ArrayList<MyInput>(), new ArrayList<MyInput>())
+//        level = new Level([new MyInput(1, 1, board), new MyInput(1, 1, board)])
 
     }
 
