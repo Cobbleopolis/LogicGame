@@ -109,6 +109,17 @@ public class Board {
         bridgesList.remove(bridgesList.indexOf(b));
         bridges[b.x][b.y] = null;
     }
+    public void removeObj(int x, int y) {
+        if(bridges[x][y] != null) {
+            removeBridge(bridges[x][y]);
+        }
+        if(wires[x][y] != null) {
+            removeWire(wires[x][y]);
+        }
+        if(gates[x][y] != null && !gates[x][y].isIndestructable) {
+            removeComp(gates[x][y]);
+        }
+    }
     public void lightBridges(int dir, int x, int y, int length) {
         for(int i = 1; i < length; i++) {
             if(dir == 1) {

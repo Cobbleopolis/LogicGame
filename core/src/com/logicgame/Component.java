@@ -39,7 +39,7 @@ public class Component {
 
     }
     public void update() {
-        System.out.println("something went wrong");
+
     }
     public void render() {
 

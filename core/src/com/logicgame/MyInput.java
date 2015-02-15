@@ -7,10 +7,10 @@ import javax.xml.soap.Text;
 /**
  * Created by Alex on 2/15/2015.
  */
-public class Input extends Component{
-    Texture texOn = new Texture("write_on.png");
-    Texture texOff = new Texture("write_off.png");
-    public Input(int x,int y, Board board) {
+public class MyInput extends Component{
+    Texture texOn = new Texture("wire_on.png");
+    Texture texOff = new Texture("wire_off.png");
+    public MyInput(int x, int y, Board board) {
         super(x, y, 0, 1, 1, 15, board);
         isIndestructable = true;
     }

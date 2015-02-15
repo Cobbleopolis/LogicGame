@@ -5,10 +5,10 @@ import com.badlogic.gdx.graphics.Texture;
 /**
  * Created by Alex on 2/15/2015.
  */
-public class Output extends Component{
+public class MyOutput extends Component{
     Texture texOn = new Texture("write_on.png");
     Texture texOff = new Texture("write_off.png");
-    public Output(int x,int y,int rot, int width, int height, int state, Board board) {
+    public MyOutput(int x, int y, int rot, int width, int height, int state, Board board) {
         super(x, y, rot, width, height, state, board);
         isIndestructable = true;
     }
@@ -22,22 +22,22 @@ public class Output extends Component{
             xOffset1--;
         }
         if (x >= -xOffset1 && (board.gates[x + xOffset1][y] != null && (board.gates[x + xOffset1][y].state & 4) == 4) || (board.wires[x + xOffset1][y] != null && board.wires[x + xOffset1][y].state)) {
-            this.newState = 0;
+            this.newState = 15;
             board.lightBridges(1, x, y, -xOffset1);
             System.out.println("1");
         } else {
-            this.newState = 1 << rot;
+            this.newState = 0;
         }
         while(y + yOffset2 < board.height && board.bridges[x][y + yOffset2] != null) {
 //                        board.bridges[x][y + yOffset2].state = board.bridges[x][y + yOffset2].state | 2;
             yOffset2++;
         }
         if (y + yOffset2< board.height + 1 && (board.gates[x][y + yOffset2] != null && (board.gates[x][y + yOffset2].state & 8) == 8) || (board.wires[x][y + yOffset2] != null && board.wires[x][y + yOffset2].state)) {
-            this.newState = 0;
+            this.newState = 15;
             board.lightBridges(4, x, y, yOffset2);
 //                        System.out.println("2");
         } else {
-            this.newState = 1 << rot;
+            this.newState = 0;
         }
         while(x + xOffset2 < board.width && board.bridges[x + xOffset2][y] != null) {
 //                        board.bridges[x + xOffset2][y].state = board.bridges[x + xOffset2][y].state | 1;
@@ -45,21 +45,21 @@ public class Output extends Component{
         }
         if (x + xOffset2 < board.width + 1 && (board.gates[x + xOffset2][y] != null && (board.gates[x + xOffset2][y].state & 1) == 1) || (board.wires[x + xOffset2][y] != null && board.wires[x + xOffset2][y].state)) {
 //                        System.out.println("3");
-            this.newState = 0;
+            this.newState = 15;
             board.lightBridges(2, x, y, xOffset2);
         } else {
-            this.newState = 1 << rot;
+            this.newState = 0;
         }
         while(y + yOffset1 >= 0 && board.bridges[x][y + yOffset1] != null) {
 //                        board.bridges[x][y + yOffset1].state = board.bridges[x][y + yOffset1].state | 2;
             yOffset1--;
         }
         if (y > -yOffset1 && (board.gates[x][y + yOffset1] != null && (board.gates[x][y + yOffset1].state & 2) == 2) || (board.wires[x][y + yOffset1] != null && board.wires[x][y + yOffset1].state)) {
-            this.newState = 0;
+            this.newState = 15;
             board.lightBridges(3, x, y, -yOffset1);
 //                        System.out.println("4");
         } else {
-            this.newState = 1 << rot;
+            this.newState = 0;
         }
     }
     public int getState() {

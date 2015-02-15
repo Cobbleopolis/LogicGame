@@ -11,11 +11,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.logicgame.Board;
-import com.logicgame.LogicGame;
-import com.logicgame.Not;
+import com.logicgame.*;
 import com.logicgame.util.UtilDraw;
-import com.logicgame.Button1;
 
 
 /**
@@ -41,7 +38,7 @@ public class ScreenSandbox implements Screen, InputProcessor{
         game = g;
         spriteBatch = new SpriteBatch();
         board = new Board(0, Gdx.graphics.getHeight() - 10 * Board.component_size, 10,10, spriteBatch);
-//        board.addComponent(new Input(5,5, board));
+        board.addComponent(new MyInput(5,5, board));
 
     }
 

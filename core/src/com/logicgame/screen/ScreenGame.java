@@ -13,6 +13,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.logicgame.*;
 import com.logicgame.util.UtilDraw;
 
+import java.util.ArrayList;
+
 /**
  * Created by Alex on 2/14/2015.
  */
@@ -26,6 +28,9 @@ public class ScreenGame implements Screen, InputProcessor{
     Button1 rotate;
 
     SpriteBatch spriteBatch;
+    Level level;
+    boolean testing = false;
+    int timeout = 0;
 
     /**
      * Constructor for the splash screen
@@ -36,6 +41,8 @@ public class ScreenGame implements Screen, InputProcessor{
         game = g;
         spriteBatch = new SpriteBatch();
         board = new Board(0, Gdx.graphics.getHeight() - 10 * Board.component_size, 10,10, spriteBatch);
+
+        level = new Level(new ArrayList<MyInput>(), new ArrayList<MyInput>())
 
     }
 
@@ -53,6 +60,13 @@ public class ScreenGame implements Screen, InputProcessor{
         if (Gdx.input.isKeyPressed(Input.Keys.BACK) && LogicGame.backDelay == 0){
             game.setScreen(new ScreenLevelSelect(game));
             LogicGame.backDelay = 30;
+        }
+        if(testing) {
+            level.setIn();
+            if(level.testOut())
+                level.num++;
+            if(level.num == level.max)
+                System.out.println("you win!");
         }
     }
 
@@ -88,6 +102,7 @@ public class ScreenGame implements Screen, InputProcessor{
         stage = new Stage();
         skin = UtilDraw.createBasicSkin();
         rotate = new Button1(0,board.y - 320,320,320,new Texture("arrow.png"),board);
+
         Gdx.input.setInputProcessor(this);// Make the stage consume events
 
     }
@@ -115,6 +130,7 @@ public class ScreenGame implements Screen, InputProcessor{
         }
         if (rotate.isPressed(screenX, Gdx.graphics.getHeight() - screenY)) {
             rotate.onPress();
+            testing = true;
         }
         return false;
     }
