@@ -60,7 +60,7 @@ public class ScreenLevelSelect implements Screen {
         float h = font.getBounds("Level Select").height;
         font.draw(spriteBatch, "Level Select", Gdx.graphics.getWidth() / 2 - font.getBounds("Level Select").width / 2, Gdx.graphics.getHeight() - (h + 30));
         font.setScale(.5f);
-        font.draw(spriteBatch, "-Coming Soon-", Gdx.graphics.getWidth()/2 - font.getBounds("Level Select").width/2, Gdx.graphics.getHeight() - (h + 125));
+        font.draw(spriteBatch, "-More Levels Coming Soon-", Gdx.graphics.getWidth()/2 - font.getBounds("Level Select").width/2, Gdx.graphics.getHeight() - (h + 125));
         spriteBatch.end();
         if (Gdx.input.isKeyPressed(Input.Keys.BACK) && LogicGame.backDelay == 0){
             game.setScreen(new ScreenMainMenu(game));
