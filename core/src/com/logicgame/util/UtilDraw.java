@@ -17,6 +17,7 @@ public class UtilDraw {
     public static Skin createBasicSkin(){
         Skin skin;
         //Create a font
+        font = new BitmapFont(Gdx.files.internal("font.fnt"));
         font.setScale(1f);
         skin = new Skin();
         skin.add("font", font);
