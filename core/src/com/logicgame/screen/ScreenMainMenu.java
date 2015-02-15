@@ -39,7 +39,6 @@ public class ScreenMainMenu implements Screen {
      */
     public ScreenMainMenu(Game g) {
         spriteBatch = new SpriteBatch();
-//        spriteBatch.begin();
         game = g;
     }
 
@@ -47,9 +46,6 @@ public class ScreenMainMenu implements Screen {
     public void render(float delta) {
         if (Gdx.input.isKeyPressed(Input.Keys.BACK) && LogicGame.backDelay == 0) //{
             Gdx.input.setCatchBackKey(false);
-//        } else {
-//            Gdx.input.setCatchBackKey(false);
-//        }
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         if (fontAlpha < 1f) {
@@ -98,7 +94,6 @@ public class ScreenMainMenu implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage = new Stage();
-//        stage.setDebugAll(true);
         skin = UtilDraw.createBasicSkin();
 
 
@@ -126,10 +121,5 @@ public class ScreenMainMenu implements Screen {
 
 
         Gdx.input.setInputProcessor(stage);// Make the stage consume events
-//        spriteBatch.end();
-    }
-
-    public static void pauseBack() {
-
     }
 }
