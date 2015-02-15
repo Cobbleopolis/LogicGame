@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -14,6 +15,7 @@ import com.logicgame.Board;
 import com.logicgame.LogicGame;
 import com.logicgame.Not;
 import com.logicgame.util.UtilDraw;
+import com.logicgame.Button1;
 
 /**
  * Created by Alex on 2/14/2015.
@@ -25,7 +27,7 @@ public class ScreenSandbox implements Screen, InputProcessor{
 
     Game game;
     Board board;
-    BitmapFont font;
+    Button1 rotate;
 
     SpriteBatch spriteBatch;
 
@@ -46,7 +48,7 @@ public class ScreenSandbox implements Screen, InputProcessor{
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         spriteBatch.begin();
-
+        rotate.render();
         board.render();
         board.update();
         spriteBatch.end();
@@ -85,41 +87,13 @@ public class ScreenSandbox implements Screen, InputProcessor{
 
     @Override
     public void show() {
-//        spriteBatch = new SpriteBatch();
-//        spriteBatch.begin();
-        Gdx.input.setCatchBackKey(false);
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage = new Stage();
-//        stage.setDebugAll(true);
         skin = UtilDraw.createBasicSkin();
+        rotate = new Button1(0,board.y - 320,320,320,new Texture("arrow.png"),board);
+        Gdx.input.setInputProcessor(this);// Make the stage consume events
 
-
-        font = UtilDraw.font;
-
-        TextButton directionButton = new TextButton("▲", skin); // Use the initialized skin
-        directionButton.setWidth(300);
-        directionButton.setHeight(300);
-        directionButton.addListener(new ClickListener() {
-            public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new ScreenLevelSelect(game));
-            }
-        });
-        directionButton.setPosition(0, board.y - directionButton.getHeight());
-        stage.addActor(directionButton);
-
-        TextButton sandboxButton = new TextButton("Sandbox", skin); // Use the initialized skin
-        sandboxButton.setWidth(500);
-        sandboxButton.addListener(new ClickListener() {
-            public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new ScreenSandbox(game));
-            }
-        });
-        sandboxButton.setPosition(Gdx.graphics.getWidth() / 2 - sandboxButton.getWidth() / 2, Gdx.graphics.getHeight() / 2 - 277);
-        stage.addActor(sandboxButton);
-
-
-        Gdx.input.setInputProcessor(stage);// Make the stage consume events
     }
 
     @Override
@@ -142,6 +116,9 @@ public class ScreenSandbox implements Screen, InputProcessor{
         System.out.println(screenX);
         if(screenX < board.width * board.component_size && (Gdx.graphics.getHeight() - screenY - board.y ) > 0) {
             board.addComponent(new Not(screenX / board.component_size + 1, (Gdx.graphics.getHeight() - screenY - board.y)/ board.component_size + 1, 0, board));
+        }
+        if (rotate.isPressed(screenX, Gdx.graphics.getHeight() - screenY)) {
+            rotate.onPress();
         }
         return false;
     }

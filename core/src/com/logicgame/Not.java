@@ -39,7 +39,7 @@ public class Not extends Component {
 //                        board.bridges[x][y + yOffset2].state = board.bridges[x][y + yOffset2].state | 2;
                         yOffset2++;
                     }
-                    if (y + yOffset2< board.height && (board.gates[x][y + yOffset2] != null && (board.gates[x][y + yOffset2].state & 8) == 8) || (board.wires[x][y + yOffset2] != null && board.wires[x][y + yOffset2].state)) {
+                    if (y + yOffset2< board.height + 1 && (board.gates[x][y + yOffset2] != null && (board.gates[x][y + yOffset2].state & 8) == 8) || (board.wires[x][y + yOffset2] != null && board.wires[x][y + yOffset2].state)) {
                         this.newState = 0;
                         board.lightBridges(4, x, y, yOffset2);
 //                        System.out.println("2");
@@ -52,7 +52,7 @@ public class Not extends Component {
 //                        board.bridges[x + xOffset2][y].state = board.bridges[x + xOffset2][y].state | 1;
                         xOffset2++;
                     }
-                    if (x + xOffset2 < board.width && (board.gates[x + xOffset2][y] != null && (board.gates[x + xOffset2][y].state & 1) == 1) || (board.wires[x + xOffset2][y] != null && board.wires[x + xOffset2][y].state)) {
+                    if (x + xOffset2 < board.width + 1 && (board.gates[x + xOffset2][y] != null && (board.gates[x + xOffset2][y].state & 1) == 1) || (board.wires[x + xOffset2][y] != null && board.wires[x + xOffset2][y].state)) {
 //                        System.out.println("3");
                         this.newState = 0;
                         board.lightBridges(2, x, y, xOffset2);
