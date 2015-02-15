@@ -10,7 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.logicgame.Board;
-import com.logicgame.LogicGame;
 import com.logicgame.Not;
 import com.logicgame.Wire;
 import com.logicgame.util.UtilDraw;
@@ -43,7 +42,7 @@ public class ScreenGame implements Screen, InputProcessor{
     public ScreenGame(Game g) {
         game = g;
         spriteBatch = new SpriteBatch();
-        board = new Board(20,20, spriteBatch);
+        board = new Board(16,32, spriteBatch);
         board.addComponent(new Not(10,10,0,board));
         board.addComponent(new Not(9,10,2,board));
         board.addWire(new Wire(8, 10, board));
@@ -59,15 +58,14 @@ public class ScreenGame implements Screen, InputProcessor{
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         spriteBatch.begin();
-        spriteBatch.draw(img, x, y);
+//        spriteBatch.draw(img, x, y);
+        board.render();
         board.update();
         spriteBatch.end();
         stage.act();
         stage.draw();
-        if (Gdx.input.isKeyPressed(Input.Keys.BACK) && LogicGame.backDelay == 0){
-            game.setScreen(new ScreenLevelSelect(game));
-            LogicGame.backDelay = 30;
-        }
+//        if(Gdx.input.justTouched())
+//            game.setScreen(new ScreenLevelSelect(game));
     }
 
     @Override
@@ -97,7 +95,6 @@ public class ScreenGame implements Screen, InputProcessor{
 
     @Override
     public void show() {
-        Gdx.input.setCatchBackKey(true);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage = new Stage();
         skin = UtilDraw.createBasicSkin();
@@ -122,8 +119,10 @@ public class ScreenGame implements Screen, InputProcessor{
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-//        System.out.println(screenX);
-//        if(screenX < board.width)
+        System.out.println(screenX);
+        if(screenX < board.width * board.component_size && screenY < board.height * board.component_size) {
+            board.addComponent(new Not(screenX / board.component_size, (Gdx.graphics.getHeight() - screenY )/ board.component_size, 0, board));
+        }
         return false;
     }
 

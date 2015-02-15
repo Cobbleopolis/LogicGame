@@ -1,5 +1,6 @@
 package com.logicgame;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.ArrayList;
@@ -15,7 +16,8 @@ public class Board {
     ArrayList<Wire> wiresList;
     ArrayList<Component> gatesList;
     SpriteBatch spriteBatch;
-    int component_size = 64;
+    public int component_size = 48;
+    Texture texture = new Texture("grid.png");
     public Board(int width, int height, SpriteBatch spriteBatch) {
         this.width = width;
         this.height = height;
@@ -53,5 +55,8 @@ public class Board {
     public void addWire(Wire w) {
         wiresList.add(w);
         wires[w.x][w.y] = w;
+    }
+    public void render() {
+        spriteBatch.draw(texture,0,0,width * component_size, height * component_size);
     }
 }
