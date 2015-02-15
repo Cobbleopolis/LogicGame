@@ -58,8 +58,10 @@ public class ScreenGame implements Screen, InputProcessor{
         spriteBatch.end();
         stage.act();
         stage.draw();
-//        if(Gdx.input.justTouched())
-//            game.setScreen(new ScreenLevelSelect(game));
+        if (Gdx.input.isKeyPressed(Input.Keys.BACK) && LogicGame.backDelay == 0){
+            game.setScreen(new ScreenLevelSelect(game));
+            LogicGame.backDelay = 30;
+        }
     }
 
     @Override
@@ -89,6 +91,7 @@ public class ScreenGame implements Screen, InputProcessor{
 
     @Override
     public void show() {
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage = new Stage();
         skin = UtilDraw.createBasicSkin();

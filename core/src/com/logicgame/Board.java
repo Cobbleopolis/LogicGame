@@ -60,6 +60,6 @@ public class Board {
         wires[w.x][w.y] = w;
     }
     public void render() {
-        spriteBatch.draw(texture,x,y,width * component_size, height * component_size);
+        spriteBatch.draw(texture,x,y,width * component_size * 2, height * component_size * 2);
     }
 }

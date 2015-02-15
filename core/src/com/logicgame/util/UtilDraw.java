@@ -11,14 +11,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
 public class UtilDraw {
 
+    public static BitmapFont font = new BitmapFont(Gdx.files.internal("font.fnt"));
+
 
     public static Skin createBasicSkin(){
         Skin skin;
         //Create a font
-        BitmapFont font = new BitmapFont(Gdx.files.internal("font.fnt"));
-        font.scale(2f);
+        font.setScale(1f);
         skin = new Skin();
-        skin.add("default", font);
+        skin.add("font", font);
 
         //Create a texture
         Pixmap pixmap = new Pixmap((int) Gdx.graphics.getWidth()/4,(int)Gdx.graphics.getHeight()/10, Pixmap.Format.RGB888);
@@ -32,7 +33,7 @@ public class UtilDraw {
         textButtonStyle.down = skin.newDrawable("background", Color.DARK_GRAY);
         textButtonStyle.checked = skin.newDrawable("background", Color.LIGHT_GRAY);
         textButtonStyle.over = skin.newDrawable("background", Color.LIGHT_GRAY);
-        textButtonStyle.font = skin.getFont("default");
+        textButtonStyle.font = skin.get("font", BitmapFont.class);
         skin.add("default", textButtonStyle);
         return skin;
     }
