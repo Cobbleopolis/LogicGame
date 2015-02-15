@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.logicgame.screen.ScreenMainMenu;
 
 public class LogicGame extends Game {
+
     public static int backDelay = 30;
     @Override
     public void create() {

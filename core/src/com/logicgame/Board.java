@@ -11,14 +11,17 @@ import java.util.ArrayList;
 public class Board {
     public int width;
     public int height;
+    public int x, y;
     Wire[][] wires;
     Component[][] gates;
     ArrayList<Wire> wiresList;
     ArrayList<Component> gatesList;
     SpriteBatch spriteBatch;
-    public int component_size = 48;
+    public static int component_size = 54;
     Texture texture = new Texture("grid.png");
-    public Board(int width, int height, SpriteBatch spriteBatch) {
+    public Board(int x, int y, int width, int height, SpriteBatch spriteBatch) {
+        this.x = x;
+        this.y = y;
         this.width = width;
         this.height = height;
         this.wires = new Wire[width+1][height+1];
@@ -57,6 +60,6 @@ public class Board {
         wires[w.x][w.y] = w;
     }
     public void render() {
-        spriteBatch.draw(texture,0,0,width * component_size, height * component_size);
+        spriteBatch.draw(texture,x,y,width * component_size, height * component_size);
     }
 }

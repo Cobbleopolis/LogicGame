@@ -37,9 +37,9 @@ public class Wire {
     }
     public void render() {
         if(state) {
-            board.spriteBatch.draw(texOn, x * board.component_size, y * board.component_size, board.component_size, board.component_size);
+            board.spriteBatch.draw(texOn, x * board.component_size + board.x, y * board.component_size + board.y, board.component_size, board.component_size);
         } else {
-            board.spriteBatch.draw(texOff, x * board.component_size, y * board.component_size, board.component_size, board.component_size);
+            board.spriteBatch.draw(texOff, x * board.component_size + board.x, y * board.component_size + board.y, board.component_size, board.component_size);
         }
     }
 }
