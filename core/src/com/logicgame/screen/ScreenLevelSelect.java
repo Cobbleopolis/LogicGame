@@ -56,8 +56,11 @@ public class ScreenLevelSelect implements Screen {
         stage.draw();
         spriteBatch.begin();
         font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
-        font.setScale(2.5f);
-        font.draw(spriteBatch, "Level Select", Gdx.graphics.getWidth()/2 - font.getBounds("Level Select").width/2, Gdx.graphics.getHeight() - (font.getBounds("Level Select").height + 30));
+        font.setScale(2f);
+        float h = font.getBounds("Level Select").height;
+        font.draw(spriteBatch, "Level Select", Gdx.graphics.getWidth() / 2 - font.getBounds("Level Select").width / 2, Gdx.graphics.getHeight() - (h + 30));
+        font.setScale(.5f);
+        font.draw(spriteBatch, "-Coming Soon-", Gdx.graphics.getWidth()/2 - font.getBounds("Level Select").width/2, Gdx.graphics.getHeight() - (h + 125));
         spriteBatch.end();
         if (Gdx.input.isKeyPressed(Input.Keys.BACK) && LogicGame.backDelay == 0){
             game.setScreen(new ScreenMainMenu(game));
@@ -102,7 +105,7 @@ public class ScreenLevelSelect implements Screen {
         for(int i = 0; i < 7; i++){
             for(int j = 0; j < 5; j++){
                 final String lvl = "" + (j + (i * 5) + 1);
-                TextButton button = new TextButton(lvl, skin); // Use the initialized skin
+                TextButton button = new TextButton(lvl, skin.get("disabled", TextButton.TextButtonStyle.class)); // Use the initialized skin
                 button.setWidth(150);
                 button.setHeight(150);
                 button.addListener(new ClickListener() {

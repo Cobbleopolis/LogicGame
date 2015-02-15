@@ -36,6 +36,16 @@ public class UtilDraw {
         textButtonStyle.over = skin.newDrawable("background", Color.LIGHT_GRAY);
         textButtonStyle.font = skin.get("font", BitmapFont.class);
         skin.add("default", textButtonStyle);
+
+        //Create a button style
+        TextButton.TextButtonStyle textButtonStyle2 = new TextButton.TextButtonStyle();
+        textButtonStyle2.up = skin.newDrawable("background", Color.DARK_GRAY);
+        textButtonStyle2.down = skin.newDrawable("background", Color.DARK_GRAY);
+        textButtonStyle2.checked = skin.newDrawable("background", Color.DARK_GRAY);
+        textButtonStyle2.over = skin.newDrawable("background", Color.DARK_GRAY);
+        textButtonStyle2.font = skin.get("font", BitmapFont.class);
+        skin.add("disabled", textButtonStyle2);
+
         return skin;
     }
 }

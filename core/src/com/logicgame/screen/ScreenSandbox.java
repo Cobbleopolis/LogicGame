@@ -31,6 +31,7 @@ public class ScreenSandbox implements Screen, InputProcessor{
     Button1 rotate;
     Button2 none;
     Button2 wire;
+    Button2 and;
     Button2 not;
     Button2 bridge;
 
@@ -45,7 +46,6 @@ public class ScreenSandbox implements Screen, InputProcessor{
         game = g;
         spriteBatch = new SpriteBatch();
         board = new Board(0, Gdx.graphics.getHeight() - 10 * Board.component_size, 10,10, spriteBatch);
-        board.addComponent(new Xor(5,5, 1, board));
 
     }
 
@@ -57,6 +57,7 @@ public class ScreenSandbox implements Screen, InputProcessor{
         rotate.render();
         none.render();
         wire.render();
+        and.render();
         not.render();
         bridge.render();
         board.render();
@@ -104,6 +105,7 @@ public class ScreenSandbox implements Screen, InputProcessor{
         rotate = new Button1(0, board.y - 320, 320, 320, new Texture("arrow.png"), 32, 32, board);
         none = new Button2("none", 330, board.y - 160, 160, 160, new Texture("empty.png"), 16, 16, board);
         wire = new Button2("wire", 330, board.y - 320, 160, 160, new Texture("wire_on.png"), 16, 16, board);
+        and = new Button2("and", 660, board.y - 160, 160, 160, new Texture("and_on.png"), 16, 16, board);
         not = new Button2("not", 500, board.y - 160, 160, 160, new Texture("not_on.png"), 16, 16, board);
         bridge = new Button2("bridge", 500, board.y - 320, 160, 160, new Texture("bridge1.png"), 16, 16, board);
         Gdx.input.setInputProcessor(this);// Make the stage consume events
@@ -127,14 +129,16 @@ public class ScreenSandbox implements Screen, InputProcessor{
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        System.out.println(screenX);
+//        System.out.println(screenX);
         if(screenX < board.width * board.component_size && (Gdx.graphics.getHeight() - screenY - board.y ) > 0) {
             if(type == "none")
                 board.removeObj(screenX / board.component_size + 1, (Gdx.graphics.getHeight() - screenY - board.y)/ board.component_size + 1);
             if(type == "wire")
                 board.addWire(new Wire(screenX / board.component_size + 1, (Gdx.graphics.getHeight() - screenY - board.y)/ board.component_size + 1, board));
+            if(type == "and")
+                board.addComponent(new And(screenX / board.component_size + 1, (Gdx.graphics.getHeight() - screenY - board.y)/ board.component_size + 1, rotate.rot, board));
             if(type == "not")
-                board.addComponent(new Not(screenX / board.component_size + 1, (Gdx.graphics.getHeight() - screenY - board.y)/ board.component_size + 1, rotate.rot, board));
+                board.addComponent(new Not(screenX / board.component_size + 1, (Gdx.graphics.getHeight() - screenY - board.y) / board.component_size + 1, rotate.rot, board));
             if(type == "bridge")
                 board.addBridge(new Bridge(screenX / board.component_size + 1, (Gdx.graphics.getHeight() - screenY - board.y) / board.component_size + 1, board));
         }
@@ -151,6 +155,12 @@ public class ScreenSandbox implements Screen, InputProcessor{
             setSelected(wire.type);
             type = wire.type;
         }
+
+        if (and.isPressed(screenX, Gdx.graphics.getHeight() - screenY)) {
+            setSelected(and.type);
+            type = and.type;
+        }
+
         if (not.isPressed(screenX, Gdx.graphics.getHeight() - screenY)) {
             setSelected(not.type);
             type = not.type;
@@ -194,6 +204,12 @@ public class ScreenSandbox implements Screen, InputProcessor{
             wire.isSelected = true;
         } else {
             wire.isSelected = false;
+        }
+
+        if(and.type == sel) {
+            and.isSelected = true;
+        } else {
+            and.isSelected = false;
         }
 
         if(not.type == sel) {

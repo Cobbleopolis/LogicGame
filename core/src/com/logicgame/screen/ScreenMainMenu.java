@@ -119,6 +119,16 @@ public class ScreenMainMenu implements Screen {
         sandboxButton.setPosition(Gdx.graphics.getWidth() / 2 - sandboxButton.getWidth() / 2, Gdx.graphics.getHeight() / 2 - 277);
         stage.addActor(sandboxButton);
 
+        TextButton gateDescriptionButton = new TextButton("Gate Descriptions", skin); // Use the initialized skin
+        gateDescriptionButton.setWidth(600);
+        gateDescriptionButton.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new ScreenGateDescription(game));
+            }
+        });
+        gateDescriptionButton.setPosition(Gdx.graphics.getWidth() / 2 - gateDescriptionButton.getWidth() / 2, Gdx.graphics.getHeight() / 2 - 554);
+        stage.addActor(gateDescriptionButton);
+
 
         Gdx.input.setInputProcessor(stage);// Make the stage consume events
     }
