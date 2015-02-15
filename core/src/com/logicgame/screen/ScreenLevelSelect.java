@@ -3,11 +3,8 @@ package com.logicgame.screen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -16,8 +13,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.logicgame.util.UtilDraw;
 
-public class ScreenMainMenu implements Screen {
-
+/**
+ * Created by Alex on 2/14/2015.
+ */
+public class ScreenLevelSelect implements Screen {
     Stage stage;
 
     Skin skin;
@@ -38,7 +37,7 @@ public class ScreenMainMenu implements Screen {
      *
      * @param g Game which called this splash screen.
      */
-    public ScreenMainMenu(Game g) {
+    public ScreenLevelSelect(Game g) {
         game = g;
     }
 
@@ -80,15 +79,14 @@ public class ScreenMainMenu implements Screen {
     public void show() {
         stage = new Stage();
         skin = UtilDraw.createBasicSkin();
-        TextButton button = new TextButton("New game", skin); // Use the initialized skin
+        TextButton button = new TextButton("Level 1", skin); // Use the initialized skin
 //        button.padLeft(30f);
 //        button.padRight(30f);
         button.pad(100f);
         button.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Touch");
-                game.setScreen(new ScreenLevelSelect(game));
-
+                game.setScreen(new ScreenGame(game));
             }
         });
         button.setPosition(Gdx.graphics.getWidth()/2 - button.getWidth()/2 , Gdx.graphics.getHeight()/2);
