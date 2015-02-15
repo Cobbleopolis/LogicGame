@@ -41,13 +41,14 @@ public class ScreenSandbox implements Screen, InputProcessor{
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         spriteBatch.begin();
+
         board.render();
         board.update();
         spriteBatch.end();
         stage.act();
         stage.draw();
         if (Gdx.input.isKeyPressed(Input.Keys.BACK) && LogicGame.backDelay == 0){
-            game.setScreen(new ScreenMainMenu(game));
+            game.setScreen(new ScreenLevelSelect(game));
             LogicGame.backDelay = 30;
         }
     }
@@ -84,6 +85,7 @@ public class ScreenSandbox implements Screen, InputProcessor{
         stage = new Stage();
         skin = UtilDraw.createBasicSkin();
         Gdx.input.setInputProcessor(this);// Make the stage consume events
+
     }
 
     @Override
@@ -105,7 +107,7 @@ public class ScreenSandbox implements Screen, InputProcessor{
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         System.out.println(screenX);
         if(screenX < board.width * board.component_size && (Gdx.graphics.getHeight() - screenY - board.y ) > 0) {
-            board.addComponent(new Not(screenX / board.component_size, (Gdx.graphics.getHeight() - screenY - board.y)/ board.component_size, 0, board));
+            board.addComponent(new Not(screenX / board.component_size + 1, (Gdx.graphics.getHeight() - screenY - board.y)/ board.component_size + 1, 0, board));
         }
         return false;
     }
