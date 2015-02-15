@@ -21,8 +21,8 @@ public class Board {
     public Board(int width, int height, SpriteBatch spriteBatch) {
         this.width = width;
         this.height = height;
-        this.wires = new Wire[width][height];
-        this.gates = new Component[width][height];
+        this.wires = new Wire[width+1][height+1];
+        this.gates = new Component[width+1][height+1];
         this.wiresList = new ArrayList<Wire>();
         this.gatesList = new ArrayList<Component>();
         this.spriteBatch = spriteBatch;
