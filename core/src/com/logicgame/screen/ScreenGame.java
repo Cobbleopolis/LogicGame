@@ -111,7 +111,7 @@ public class ScreenGame implements Screen, InputProcessor{
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         System.out.println(screenX);
         if(screenX < board.width * board.component_size && (Gdx.graphics.getHeight() - screenY - board.y ) > 0) {
-            board.addComponent(new Not(screenX / board.component_size, (Gdx.graphics.getHeight() - screenY - board.y)/ board.component_size, 0, board));
+            board.addComponent(new Not(screenX / board.component_size + 1, (Gdx.graphics.getHeight() - screenY - board.y)/ board.component_size + 1, 0, board));
         }
         return false;
     }
