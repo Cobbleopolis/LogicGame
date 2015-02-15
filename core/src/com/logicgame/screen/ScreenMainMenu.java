@@ -2,10 +2,9 @@ package com.logicgame.screen;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -19,6 +18,8 @@ import com.logicgame.util.UtilDraw;
 
 public class ScreenMainMenu implements Screen {
 
+    boolean backBool = false;
+
     BitmapFont font;
 
     Stage stage;
@@ -28,11 +29,7 @@ public class ScreenMainMenu implements Screen {
     Game game;
 
     SpriteBatch spriteBatch;
-    Texture img = new Texture("doge-600.png");
 
-    //1920x1080
-    int x = 0;
-    int y = 0;
     public static float fontAlpha = 0f;
 
     /**
@@ -48,12 +45,17 @@ public class ScreenMainMenu implements Screen {
 
     @Override
     public void render(float delta) {
+        if (Gdx.input.isKeyPressed(Input.Keys.BACK) && LogicGame.backDelay == 0) //{
+            Gdx.input.setCatchBackKey(false);
+//        } else {
+//            Gdx.input.setCatchBackKey(false);
+//        }
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        if(fontAlpha < 1f) {
+        if (fontAlpha < 1f) {
             fontAlpha += .025f;
         }
-        if(fontAlpha > 1f) {
+        if (fontAlpha > 1f) {
             fontAlpha = 1f;
         }
         stage.act();
@@ -61,7 +63,7 @@ public class ScreenMainMenu implements Screen {
         spriteBatch.begin();
         font.setColor(1.0f, 1.0f, 1.0f, fontAlpha);
         font.setScale(2.5f);
-        font.draw(spriteBatch, "Logic Bit", Gdx.graphics.getWidth()/2 - font.getBounds("Logic Bit").width/2, Gdx.graphics.getHeight()*3/4);
+        font.draw(spriteBatch, "Logic Bit", Gdx.graphics.getWidth() / 2 - font.getBounds("Logic Bit").width / 2, Gdx.graphics.getHeight() * 3 / 4);
         spriteBatch.end();
     }
 
@@ -92,9 +94,7 @@ public class ScreenMainMenu implements Screen {
 
     @Override
     public void show() {
-//        spriteBatch = new SpriteBatch();
-//        spriteBatch.begin();
-//        Gdx.input.setCatchBackKey(false);
+        Gdx.input.setCatchBackKey(true);
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage = new Stage();
@@ -108,7 +108,7 @@ public class ScreenMainMenu implements Screen {
         levelSelectButton.setWidth(500);
         levelSelectButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new ScreenMainMenu(game));
+                game.setScreen(new ScreenLevelSelect(game));
             }
         });
         levelSelectButton.setPosition(Gdx.graphics.getWidth() / 2 - levelSelectButton.getWidth() / 2, Gdx.graphics.getHeight() / 2);
@@ -127,5 +127,9 @@ public class ScreenMainMenu implements Screen {
 
         Gdx.input.setInputProcessor(stage);// Make the stage consume events
 //        spriteBatch.end();
+    }
+
+    public static void pauseBack() {
+
     }
 }
