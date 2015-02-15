@@ -1,5 +1,7 @@
 package com.logicgame;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 import java.util.ArrayList;
 
 /**
@@ -10,6 +12,7 @@ public class Component {
     int x, y, rot, width, height;
     int state, newState;
     Board board;
+    SpriteBatch spriteBatch;
 
     public Component(int x,int y,int rot, int width, int height, int state, Board board) {
         this.x = x;
@@ -22,18 +25,21 @@ public class Component {
         this.board = board;
     }
     public void updateWires() {
-        if ((state & 1) == 1 && !board.wires[x - 1][y].state)
+        if (x > 0 && board.wires[x - 1][y] != null && (state & 1) == 1 && !board.wires[x - 1][y].state)
             board.wires[x - 1][y].update();
-        if ((state & 2) == 2 && !board.wires[x][y + 1].state)
+        if (y < board.height - 1 && board.wires[x][y + 1] != null && (state & 2) == 2 && !board.wires[x][y + 1].state)
             board.wires[x][y + 1].update();
-        if ((state & 4) == 4 && !board.wires[x + 1][y].state)
+        if (x < board.width - 1 && board.wires[x + 1][y] != null && (state & 4) == 4 && !board.wires[x + 1][y].state)
             board.wires[x + 1][y].update();
-        if ((state & 8) == 8 && !board.wires[x][y - 1].state)
+        if (y > 0 && board.wires[x][y - 1] != null && (state & 8) == 8 && !board.wires[x][y - 1].state)
             board.wires[x][y - 1].update();
 
     }
     public void update() {
         System.out.println("something went wrong");
+    }
+    public void render() {
+
     }
     public void reState() {
         state = newState;

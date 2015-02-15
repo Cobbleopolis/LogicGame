@@ -13,6 +13,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.logicgame.Board;
+import com.logicgame.Not;
+import com.logicgame.Wire;
 import com.logicgame.util.UtilDraw;
 
 /**
@@ -43,7 +45,15 @@ public class ScreenGame implements Screen {
     public ScreenGame(Game g) {
         game = g;
         spriteBatch = new SpriteBatch();
-        Board board = new Board(20,20);
+        board = new Board(20,20, spriteBatch);
+        board.addComponent(new Not(10,10,0,board));
+        board.addComponent(new Not(9,10,2,board));
+        board.addWire(new Wire(8, 10, board));
+        board.addWire(new Wire(8, 11, board));
+        board.addWire(new Wire(9, 11, board));
+        board.addWire(new Wire(10, 11, board));
+        board.addWire(new Wire(11, 11, board));
+        board.addWire(new Wire(11, 10, board));
     }
 
     @Override
@@ -52,6 +62,7 @@ public class ScreenGame implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         spriteBatch.begin();
         spriteBatch.draw(img, x, y);
+        board.update();
         spriteBatch.end();
         stage.act();
         stage.draw();

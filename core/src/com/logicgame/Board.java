@@ -1,5 +1,7 @@
 package com.logicgame;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 import java.util.ArrayList;
 
 /**
@@ -12,13 +14,15 @@ public class Board {
     Component[][] gates;
     ArrayList<Wire> wiresList;
     ArrayList<Component> gatesList;
-    public Board(int width, int height) {
+    SpriteBatch spriteBatch;
+    public Board(int width, int height, SpriteBatch spriteBatch) {
         this.width = width;
         this.height = height;
         this.wires = new Wire[width][height];
         this.gates = new Component[width][height];
         this.wiresList = new ArrayList<Wire>();
         this.gatesList = new ArrayList<Component>();
+        this.spriteBatch = spriteBatch;
 
     }
     public void update() {
@@ -34,5 +38,19 @@ public class Board {
         for(int i = 0; i < gatesList.size(); i++) {
             gatesList.get(i).reState();
         }
+        for(int i = 0; i < gatesList.size(); i++) {
+            gatesList.get(i).render();
+        }
+        for(int i = 0; i < wiresList.size(); i++) {
+            wiresList.get(i).render();
+        }
+    }
+    public void addComponent(Component c) {
+        gatesList.add(c);
+        gates[c.x][c.y] = c;
+    }
+    public void addWire(Wire w) {
+        wiresList.add(w);
+        wires[w.x][w.y] = w;
     }
 }
