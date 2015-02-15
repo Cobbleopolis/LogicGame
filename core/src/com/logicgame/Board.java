@@ -15,6 +15,7 @@ public class Board {
     ArrayList<Wire> wiresList;
     ArrayList<Component> gatesList;
     SpriteBatch spriteBatch;
+    int component_size = 64;
     public Board(int width, int height, SpriteBatch spriteBatch) {
         this.width = width;
         this.height = height;

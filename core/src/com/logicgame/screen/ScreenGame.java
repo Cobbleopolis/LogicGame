@@ -1,9 +1,6 @@
 package com.logicgame.screen;
 
-import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -20,7 +17,7 @@ import com.logicgame.util.UtilDraw;
 /**
  * Created by Alex on 2/14/2015.
  */
-public class ScreenGame implements Screen {
+public class ScreenGame implements Screen, InputProcessor{
     Stage stage;
 
     Skin skin;
@@ -101,5 +98,45 @@ public class ScreenGame implements Screen {
         stage = new Stage();
         skin = UtilDraw.createBasicSkin();
         Gdx.input.setInputProcessor(stage);// Make the stage consume events
+    }
+
+    @Override
+    public boolean keyDown(int keycode) {
+        return false;
+    }
+
+    @Override
+    public boolean keyUp(int keycode) {
+        return false;
+    }
+
+    @Override
+    public boolean keyTyped(char character) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        System.out.println("touchDown");
+    }
+
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDragged(int screenX, int screenY, int pointer) {
+        return false;
+    }
+
+    @Override
+    public boolean mouseMoved(int screenX, int screenY) {
+        return false;
+    }
+
+    @Override
+    public boolean scrolled(int amount) {
+        return false;
     }
 }
