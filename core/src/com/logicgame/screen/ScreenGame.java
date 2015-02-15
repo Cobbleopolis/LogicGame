@@ -247,30 +247,42 @@ public class ScreenGame implements Screen, InputProcessor{
         }
     }
     public Level getLevel(int lvl) {
-
+        MyInput[] temp0 = {new MyInput(5, 1, board)};
+        MyOutput[] tempt = {new MyOutput(6, 9, board)};
+        int[][] tempc = {{0}, {15}};
+        int[][] tempu = {{0}, {15}};
+        Level level = new Level(temp0, tempt, tempc, tempu, board);
         switch(lvl) {
             case 1:
                 MyInput[] temp1 = {new MyInput(4, 1, board), new MyInput(8, 1, board)};
                 MyOutput[] temp2 = {new MyOutput(6, 9, board)};
                 int[][] temp3 = {{0, 0}, {15, 0}, {0, 15}, {15, 15}};
                 int[][] temp4 = {{0}, {15}, {15}, {15}};
-                return new Level(temp1, temp2, temp3, temp4, board);
+                level = new Level(temp1, temp2, temp3, temp4, board);
             break;
             case 2:
                 MyInput[] temp5 = {new MyInput(4, 1, board), new MyInput(8, 1, board)};
                 MyOutput[] temp6 = {new MyOutput(6, 9, board)};
                 int[][] temp7 = {{0, 0}, {15, 0}, {0, 15}, {15, 15}};
-                int[][] temp8 = {{0}, {0}, {0}, {0}};
-                return new Level(temp5, temp6, temp7, temp8, board);
+                int[][] temp8 = {{15}, {0}, {0}, {0}};
+                level = new Level(temp5, temp6, temp7, temp8, board);
             break;
             case 3:
-                MyInput[] temp5 = {new MyInput(4, 1, board), new MyInput(8, 1, board)};
-                MyOutput[] temp6 = {new MyOutput(6, 9, board)};
-                int[][] temp7 = {{0, 0}, {15, 0}, {0, 15}, {15, 15}};
-                int[][] temp8 = {{0}, {15}, {15}, {15}};
-                return new Level(temp5, temp6, temp7, temp8, board);
+                MyInput[] temp9 = {new MyInput(4, 1, board), new MyInput(8, 1, board)};
+                MyOutput[] temp10 = {new MyOutput(6, 9, board)};
+                int[][] temp11 = {{0, 0}, {15, 0}, {0, 15}, {15, 15}};
+                int[][] temp12 = {{15}, {15}, {15}, {0}};
+                level =  new Level(temp9, temp10, temp11, temp12, board);
             break;
+            case 4:
+                MyInput[] temp13 = {new MyInput(4, 1, board), new MyInput(8, 1, board)};
+                MyOutput[] temp14 = {new MyOutput(6, 9, board)};
+                int[][] temp15 = {{0, 0}, {15, 0}, {0, 15}, {15, 15}};
+                int[][] temp16 = {{0}, {0}, {0}, {15}};
+                level =  new Level(temp13, temp14, temp15, temp16, board);
+                break;
 
         }
+        return level;
     }
 }
