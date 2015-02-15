@@ -15,7 +15,7 @@ public class Component {
     Board board;
     SpriteBatch spriteBatch;
     Texture texOn = new Texture("wire_on.png");
-    Boolean isIndestructable = false;
+    public Boolean isIndestructable = false;
 
     public Component(int x,int y,int rot, int width, int height, int state, Board board) {
         this.x = x;
