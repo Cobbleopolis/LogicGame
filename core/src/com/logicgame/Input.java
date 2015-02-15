@@ -1,12 +1,27 @@
 package com.logicgame;
 
+import com.badlogic.gdx.graphics.Texture;
+
+import javax.xml.soap.Text;
+
 /**
  * Created by Alex on 2/15/2015.
  */
 public class Input extends Component{
+    Texture texOn = new Texture("write_on.png");
+    Texture texOff = new Texture("write_off.png");
     public Input(int x,int y,int rot, int width, int height, int state, Board board) {
         super(x, y, rot, width, height, state, board);
-
-
+        isIndestructable = true;
+    }
+    public void setState(int state) {
+        this.state = state;
+    }
+    public void render() {
+        if(state > 0) {
+            board.spriteBatch.draw(texOn, (x - 1) * board.component_size + board.x, (y - 1) * board.component_size + board.y, board.component_size / 2, board.component_size / 2, board.component_size, board.component_size, 1, 1, -rot * 90,0,0,16,16,false,false);
+        } else {
+            board.spriteBatch.draw(texOff, (x - 1) * board.component_size + board.x, (y - 1) * board.component_size + board.y, board.component_size / 2, board.component_size / 2, board.component_size, board.component_size, 1, 1, -rot * 90,0,0,16,16,false,false);
+        }
     }
 }

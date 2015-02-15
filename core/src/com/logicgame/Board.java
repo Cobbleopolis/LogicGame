@@ -59,11 +59,13 @@ public class Board {
         if(bridges[c.x][c.y] != null) {
             removeBridge(bridges[c.x][c.y]);
         }
-        if(gates[c.x][c.y] != null) {
+        if(gates[c.x][c.y] != null && !gates[c.x][c.y].isIndestructable) {
             removeComp(gates[c.x][c.y]);
         }
-        gatesList.add(c);
-        gates[c.x][c.y] = c;
+        if(!gates[c.x][c.y].isIndestructable) {
+            gatesList.add(c);
+            gates[c.x][c.y] = c;
+        }
     }
     public void addWire(Wire w) {
         if(wires[w.x][w.y] != null) {
@@ -72,11 +74,13 @@ public class Board {
         if(bridges[w.x][w.y] != null) {
             removeBridge(bridges[w.x][w.y]);
         }
-        if(gates[w.x][w.y] != null) {
+        if(gates[w.x][w.y] != null && !gates[w.x][w.y].isIndestructable) {
             removeComp(gates[w.x][w.y]);
         }
-        wiresList.add(w);
-        wires[w.x][w.y] = w;
+        if(!gates[w.x][w.y].isIndestructable) {
+            wiresList.add(w);
+            wires[w.x][w.y] = w;
+        }
     }
     public void addBridge(Bridge b) {
         if(wires[b.x][b.y] != null) {
@@ -85,11 +89,13 @@ public class Board {
         if(bridges[b.x][b.y] != null) {
             removeBridge(bridges[b.x][b.y]);
         }
-        if(gates[b.x][b.y] != null) {
+        if(gates[b.x][b.y] != null && !gates[b.x][b.y].isIndestructable) {
             removeComp(gates[b.x][b.y]);
         }
-        bridgesList.add(b);
-        bridges[b.x][b.y] = b;
+        if(!gates[b.x][b.y].isIndestructable) {
+            bridgesList.add(b);
+            bridges[b.x][b.y] = b;
+        }
     }
     public void removeComp(Component c) {
         gatesList.remove(gatesList.indexOf(c));
