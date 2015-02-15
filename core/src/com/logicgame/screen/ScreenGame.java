@@ -45,15 +45,11 @@ public class ScreenGame implements Screen, InputProcessor{
      *
      * @param g Game which called this splash screen.
      */
-    public ScreenGame(Game g, String level) {
+    public ScreenGame(Game g, int level) {
         game = g;
         spriteBatch = new SpriteBatch();
         board = new Board(0, Gdx.graphics.getHeight() - 10 * Board.component_size, 10,10, spriteBatch);
-        MyInput[] temp1 = {new MyInput(4, 1, board), new MyInput(8, 1, board)};
-        MyOutput[] temp2 = {new MyOutput(6, 9, board)};
-        int[][] temp3 = {{0, 0}, {15, 0}, {0, 15}, {15, 15}};
-        int[][] temp4 = {{0}, {15}, {15}, {15}};
-        thisLevel = new Level(temp1, temp2, temp3, temp4, board);
+        thisLevel = getLevel(level);
 
     }
 
@@ -248,6 +244,33 @@ public class ScreenGame implements Screen, InputProcessor{
             bridge.isSelected = true;
         } else {
             bridge.isSelected = false;
+        }
+    }
+    public Level getLevel(int lvl) {
+
+        switch(lvl) {
+            case 1:
+                MyInput[] temp1 = {new MyInput(4, 1, board), new MyInput(8, 1, board)};
+                MyOutput[] temp2 = {new MyOutput(6, 9, board)};
+                int[][] temp3 = {{0, 0}, {15, 0}, {0, 15}, {15, 15}};
+                int[][] temp4 = {{0}, {15}, {15}, {15}};
+                return new Level(temp1, temp2, temp3, temp4, board);
+            break;
+            case 2:
+                MyInput[] temp5 = {new MyInput(4, 1, board), new MyInput(8, 1, board)};
+                MyOutput[] temp6 = {new MyOutput(6, 9, board)};
+                int[][] temp7 = {{0, 0}, {15, 0}, {0, 15}, {15, 15}};
+                int[][] temp8 = {{0}, {0}, {0}, {0}};
+                return new Level(temp5, temp6, temp7, temp8, board);
+            break;
+            case 3:
+                MyInput[] temp5 = {new MyInput(4, 1, board), new MyInput(8, 1, board)};
+                MyOutput[] temp6 = {new MyOutput(6, 9, board)};
+                int[][] temp7 = {{0, 0}, {15, 0}, {0, 15}, {15, 15}};
+                int[][] temp8 = {{0}, {15}, {15}, {15}};
+                return new Level(temp5, temp6, temp7, temp8, board);
+            break;
+
         }
     }
 }
