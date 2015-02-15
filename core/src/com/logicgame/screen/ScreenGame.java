@@ -298,6 +298,13 @@ public class ScreenGame implements Screen, InputProcessor{
                 int[][] temp20 = {{0}, {15}, {15}, {0}, {0}};
                 level =  new Level(temp17, temp18, temp19, temp20, board, "Turn on output when\n first input is on.\n Then, keep output on\n until second input\n turns on.");
                 break;
+            case 6:
+                MyInput[] temp21 = {new MyInput(4, 1, board), new MyInput(9, 1, board)};
+                MyOutput[] temp22 = {new MyOutput(6, 9, board)};
+                int[][] temp23 = {{0, 0}, {15, 0}, {0, 15}, {15, 15}};
+                int[][] temp24 = {{0}, {15}, {15}, {0}};
+                level =  new Level(temp21, temp22, temp23, temp24, board, "Turn on output when\nonly one input is on.");
+                break;
 
 
         }

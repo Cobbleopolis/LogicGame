@@ -11,7 +11,7 @@ public class MyInput extends Component{
     Texture texOn = new Texture("in_on.png");
     Texture texOff = new Texture("in_off.png");
     public MyInput(int x, int y, Board board) {
-        super(x, y, 0, 1, 1, 15, board);
+        super(x, y, 0, 1, 1, 0, board);
         isIndestructable = true;
     }
     public void setState(int state) {
