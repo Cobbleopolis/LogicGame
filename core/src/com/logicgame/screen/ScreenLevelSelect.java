@@ -58,9 +58,9 @@ public class ScreenLevelSelect implements Screen {
         font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
         font.setScale(2f);
         float h = font.getBounds("Level Select").height;
-        font.draw(spriteBatch, "Level Select", Gdx.graphics.getWidth() / 2 - font.getBounds("Level Select").width / 2, Gdx.graphics.getHeight() - (h + 30));
+        font.draw(spriteBatch, "Level Select", Gdx.graphics.getWidth() / 2 - font.getBounds("Level Select").width / 2, Gdx.graphics.getHeight() - (h + UtilDraw.getYFrom1920(30)));
         font.setScale(.5f);
-        font.draw(spriteBatch, "-More Levels Coming Soon-", Gdx.graphics.getWidth()/2 - font.getBounds("Level Select").width/2, Gdx.graphics.getHeight() - (h + 125));
+        font.draw(spriteBatch, "-More Levels Coming Soon-", Gdx.graphics.getWidth()/2 - (font.getBounds("Level Select").width/2), Gdx.graphics.getHeight() - (h + UtilDraw.getYFrom1920(125)));
         spriteBatch.end();
         if (Gdx.input.isKeyPressed(Input.Keys.BACK) && LogicGame.backDelay == 0){
             game.setScreen(new ScreenMainMenu(game));
@@ -111,15 +111,15 @@ public class ScreenLevelSelect implements Screen {
                 } else {
                     button = new TextButton("" + lvl, skin.get("disabled", TextButton.TextButtonStyle.class)); // Use the initialized skin
                 }
-                button.setWidth(150);
-                button.setHeight(150);
+                button.setWidth(UtilDraw.getXFrom1080(150));
+                button.setHeight(UtilDraw.getYFrom1920(150));
                 button.addListener(new ClickListener() {
                     public void clicked(InputEvent event, float x, float y) {
                         game.setScreen(new ScreenGame(game, lvl));
                     }
                 });
 
-                button.setPosition(50 + (200 * j), Gdx.graphics.getHeight() - (200 * (i + 1)) - 300);
+                button.setPosition(UtilDraw.getXFrom1080(50) + (UtilDraw.getXFrom1080(200) * j), Gdx.graphics.getHeight() - (UtilDraw.getYFrom1920(200) * (i + 1)) - UtilDraw.getYFrom1920(300));
 
                 stage.addActor(button);
             }

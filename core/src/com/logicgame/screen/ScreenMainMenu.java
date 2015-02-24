@@ -100,7 +100,7 @@ public class ScreenMainMenu implements Screen {
         font = UtilDraw.font;
 
         TextButton levelSelectButton = new TextButton("Level Select", skin); // Use the initialized skin
-        levelSelectButton.setWidth(500);
+        levelSelectButton.setWidth(UtilDraw.getXFrom1080(500));
         levelSelectButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(new ScreenLevelSelect(game));
@@ -110,23 +110,23 @@ public class ScreenMainMenu implements Screen {
         stage.addActor(levelSelectButton);
 
         TextButton sandboxButton = new TextButton("Sandbox", skin); // Use the initialized skin
-        sandboxButton.setWidth(500);
+        sandboxButton.setWidth(UtilDraw.getXFrom1080(500));
         sandboxButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(new ScreenSandbox(game));
             }
         });
-        sandboxButton.setPosition(Gdx.graphics.getWidth() / 2 - sandboxButton.getWidth() / 2, Gdx.graphics.getHeight() / 2 - 277);
+        sandboxButton.setPosition(Gdx.graphics.getWidth() / 2 - sandboxButton.getWidth() / 2, Gdx.graphics.getHeight() / 2 - UtilDraw.getYFrom1920(277));
         stage.addActor(sandboxButton);
 
         TextButton gateDescriptionButton = new TextButton("Gate Descriptions", skin); // Use the initialized skin
-        gateDescriptionButton.setWidth(600);
+        gateDescriptionButton.setWidth(UtilDraw.getXFrom1080(600));
         gateDescriptionButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(new ScreenGateDescription(game));
             }
         });
-        gateDescriptionButton.setPosition(Gdx.graphics.getWidth() / 2 - gateDescriptionButton.getWidth() / 2, Gdx.graphics.getHeight() / 2 - 554);
+        gateDescriptionButton.setPosition(Gdx.graphics.getWidth() / 2 - gateDescriptionButton.getWidth() / 2, Gdx.graphics.getHeight() / 2 - UtilDraw.getYFrom1920(554));
         stage.addActor(gateDescriptionButton);
 
 

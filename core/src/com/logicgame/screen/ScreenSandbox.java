@@ -106,7 +106,7 @@ public class ScreenSandbox implements Screen, InputProcessor{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage = new Stage();
         skin = UtilDraw.createBasicSkin();
-        rotate = new Button1(0, board.y - 320, 320, 320, new Texture("arrow.png"), 32, 32, board);
+        rotate = new Button1(0, (int) (board.y - UtilDraw.getYFrom1920(320)), (int)UtilDraw.getXFrom1080(320), (int)UtilDraw.getYFrom1920(320), new Texture("arrow.png"), 32, 32, board);
         none = new Button2("none", 330, board.y - 160, 160, 160, new Texture("empty.png"), 16, 16, board);
         wire = new Button2("wire", 330, board.y - 330, 160, 160, new Texture("wire_on.png"), 16, 16, board);
         bridge = new Button2("bridge", 330, board.y - 500, 160, 160, new Texture("bridge1.png"), 16, 16, board);

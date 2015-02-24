@@ -13,7 +13,6 @@ public class UtilDraw {
 
     public static BitmapFont font = new BitmapFont(Gdx.files.internal("font.fnt"));
 
-
     public static Skin createBasicSkin(){
         Skin skin;
         //Create a font
@@ -47,5 +46,13 @@ public class UtilDraw {
         skin.add("disabled", textButtonStyle2);
 
         return skin;
+    }
+
+    public static float getXFrom1080(int x){
+        return ((float)x / (float)1080) * (float)Gdx.graphics.getWidth();
+    }
+
+    public static float getYFrom1920(int y){
+        return ((float)y / (float)1920) * (float)Gdx.graphics.getHeight();
     }
 }
